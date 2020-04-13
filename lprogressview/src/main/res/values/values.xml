@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 水平进度条 (带文字)-->
+    <declare-styleable name="BaseProgressView">
+        <attr name="max_progress" format="integer"/>  //总数
+        <attr name="progress" format="integer"/>  //进度
+
+        <attr name="line_size_in" format="dimension"/>  //进度条 内层大小
+        <attr name="line_size_out" format="dimension"/>  //进度条 外层大小
+        <attr name="line_color_in" format="color"/> //进度条 内层颜色
+        <attr name="line_color_out" format="color"/> //进度条 外层颜色
+
+        <attr name="text" format="string"/>  //文字
+        <attr name="text_size" format="dimension"/> //文字大小
+        <attr name="text_color" format="color"/> //文字颜色
+    </declare-styleable>
+
+
+    <!-- 线性进度条 -->
+    <declare-styleable name="LineProgressView">
+        <!--圆角半径-->
+        <attr name="radius" format="dimension"/>
+        <attr name="left_top_radius" format="dimension"/>
+        <attr name="left_bottom_radius" format="dimension"/>
+        <attr name="right_top_radius" format="dimension"/>
+        <attr name="right_bottom_radius" format="dimension"/>
+    </declare-styleable>
+</resources>
