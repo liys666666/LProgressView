@@ -19,7 +19,15 @@ import android.util.AttributeSet;
  */
 public class LineProgressView extends LBaseProgressView {
 
-    Path path = new Path();
+    protected Path pathIn = new Path();
+    protected Path pathOut = new Path();
+    protected float radius;
+    protected float leftTopRadius;
+    protected float leftBottomRadius;
+    protected float rightTopRadius;
+    protected float rightBottomRadius;
+
+    protected boolean isRadius = false; //true使用radius   false使用leftTopRadius...
 
     public LineProgressView(Context context) {
         this(context, null);
@@ -31,10 +39,23 @@ public class LineProgressView extends LBaseProgressView {
 
     public LineProgressView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        initAttrs(context.obtainStyledAttributes(attrs, R.styleable.LineProgressView));
+        init();
+    }
 
-        // 获取自定义属性
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.BaseProgressView);
-        maxProgress = typedArray.getInteger(R.styleable.BaseProgressView_max_progress, 100);
+    /**
+     * 获取属性
+     * @param typedArray
+     */
+    private void initAttrs(TypedArray typedArray){
+        radius = typedArray.getDimension(R.styleable.LineProgressView_radius, 0);
+        leftTopRadius = typedArray.getDimension(R.styleable.LineProgressView_left_top_radius, 0);
+        leftBottomRadius = typedArray.getDimension(R.styleable.LineProgressView_left_bottom_radius, 0);
+        rightTopRadius = typedArray.getDimension(R.styleable.LineProgressView_right_top_radius, 0);
+        rightBottomRadius = typedArray.getDimension(R.styleable.LineProgressView_right_bottom_radius, 0);
+        if(radius!=0){ //没有赋值， 则使用4个角处理
+            isRadius = true;
+        }
     }
 
     @Override
@@ -47,11 +68,18 @@ public class LineProgressView extends LBaseProgressView {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        canvas.drawRoundRect(new RectF(0, 0, width, height), height/2, height/2, paintIn);
+        pathIn.reset();
+        pathOut.reset();
 
-        path.reset();
-        path.addRoundRect(new RectF(0, 0, width/2, height), new float[]{height/2, height/2, 0, 0, 0, 0, height/2, height/2}, Path.Direction.CW);
-        canvas.drawPath(path, paintOut);
-//        canvas.drawRoundRect(new RectF(0, 0, width/2, height), height/2, height/4, paintOut);
+        if(isRadius){
+            pathIn.addRoundRect(new RectF(0, 0, width, height), new float[]{radius, radius, radius, radius, radius, radius, radius, radius}, Path.Direction.CW);
+            pathOut.addRoundRect(new RectF(0, 0, width/2, height), new float[]{radius, radius, radius, radius, radius, radius, radius, radius}, Path.Direction.CW);
+        }else{
+            pathIn.addRoundRect(new RectF(0, 0, width, height), new float[]{leftTopRadius, leftTopRadius, rightTopRadius, rightTopRadius, rightBottomRadius, rightBottomRadius, leftBottomRadius, leftBottomRadius}, Path.Direction.CW);
+            pathOut.addRoundRect(new RectF(0, 0, width/2, height), new float[]{leftTopRadius, leftTopRadius, rightTopRadius, rightTopRadius, rightBottomRadius, rightBottomRadius, leftBottomRadius, leftBottomRadius}, Path.Direction.CW);
+        }
+
+        canvas.drawPath(pathIn, paintIn);
+        canvas.drawPath(pathOut, paintOut);
     }
 }

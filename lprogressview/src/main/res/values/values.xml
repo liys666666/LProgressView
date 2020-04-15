@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- 水平进度条 (带文字)-->
+    <!-- 公共属性 -->
     <declare-styleable name="BaseProgressView">
         <attr name="max_progress" format="integer"/>  //总数
         <attr name="progress" format="integer"/>  //进度
@@ -14,7 +14,6 @@
         <attr name="text_size" format="dimension"/> //文字大小
         <attr name="text_color" format="color"/> //文字颜色
     </declare-styleable>
-
 
     <!-- 线性进度条 -->
     <declare-styleable name="LineProgressView">

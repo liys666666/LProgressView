@@ -54,8 +54,8 @@ public abstract class LBaseProgressView extends View{
     public LBaseProgressView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.context = context;
-        initAttrs(attrs);
-        initView();
+        initBaseAttrs(attrs);
+        initBaseView();
         post(new Runnable() {
             @Override
             public void run() {
@@ -75,7 +75,7 @@ public abstract class LBaseProgressView extends View{
     public abstract void init();
 
     @SuppressLint("CustomViewStyleable")
-    private void initAttrs(AttributeSet attrs){
+    private void initBaseAttrs(AttributeSet attrs){
         // 获取自定义属性
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.BaseProgressView);
         maxProgress = typedArray.getInteger(R.styleable.BaseProgressView_max_progress, 100);
@@ -94,7 +94,7 @@ public abstract class LBaseProgressView extends View{
         typedArray.recycle();
     }
 
-    private void initView(){
+    private void initBaseView(){
         paintIn.setAntiAlias(true);
         paintIn.setColor(lineColorIn);
 
