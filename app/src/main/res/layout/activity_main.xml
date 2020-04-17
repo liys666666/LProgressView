@@ -4,12 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:background="#000000">
 
   <com.liys.view.LineProgressView
-    android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:layout_margin="20dp"
-    app:left_top_radius="25dp"/>
+      android:id="@+id/progressView"
+      android:layout_width="match_parent"
+      android:layout_height="50dp"
+      android:layout_margin="20dp"
+      app:size_in="40dp"
+      app:size_out="40dp"
+      app:color_in="@color/colorPrimaryDark"
+      app:color_out="#FCD728"
+      app:radius="25dp"
+      app:progress_radius="0dp"/>
+  <!--app:color_in="#005B94"-->
 
+  <!--<com.liys.view.TestView-->
+      <!--android:layout_width="100dp"-->
+      <!--android:layout_height="100dp"-->
+      <!--android:layout_gravity="center"-->
+      <!--android:layout_marginTop="20dp"/>-->
+  <SeekBar
+      android:id="@+id/seekBar"
+      android:layout_width="match_parent"
+      android:layout_height="50dp" />
 </LinearLayout>

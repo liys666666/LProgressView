@@ -3,7 +3,10 @@ package com.liys.view;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.util.AttributeSet;
@@ -18,14 +21,18 @@ import android.util.AttributeSet;
  * @Version: 1.0
  */
 public class LineProgressView extends LBaseProgressView {
-
+    //画笔
     protected Path pathIn = new Path();
     protected Path pathOut = new Path();
+    protected Path pathLight = new Path();
+    protected Path pathStroke = new Path();
+    //圆角
     protected float radius;
     protected float leftTopRadius;
     protected float leftBottomRadius;
     protected float rightTopRadius;
     protected float rightBottomRadius;
+    protected float progressRadius;
 
     protected boolean isRadius = false; //true使用radius   false使用leftTopRadius...
 
@@ -40,7 +47,6 @@ public class LineProgressView extends LBaseProgressView {
     public LineProgressView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initAttrs(context.obtainStyledAttributes(attrs, R.styleable.LineProgressView));
-        init();
     }
 
     /**
@@ -56,11 +62,13 @@ public class LineProgressView extends LBaseProgressView {
         if(radius!=0){ //没有赋值， 则使用4个角处理
             isRadius = true;
         }
+        progressRadius = typedArray.getDimension(R.styleable.LineProgressView_progress_radius, 0);
     }
 
     @Override
     public void init() {
-
+//        LinearGradient gradient =new LinearGradient(0, 0, 0, height, new int[]{Color.BLUE, Color.GRAY}, null, Shader.TileMode.CLAMP);  //参数一为渐变起
+//        outPaint.setShader(gradient);
     }
 
     @SuppressLint("DrawAllocation")
@@ -70,16 +78,54 @@ public class LineProgressView extends LBaseProgressView {
 
         pathIn.reset();
         pathOut.reset();
+        pathLight.reset();
+        pathStroke.reset();
 
+        //进度条当前长度
+        double progressLength = progress/maxProgress*(width-lightSize);
+
+        //绘制区域
+        int topIn = (height-sizeIn)/2;
+        int topOut = (height-sizeOut)/2;
+        RectF rectFIn = new RectF(lightSize, topIn, width-lightSize, topIn+sizeIn);
+        RectF rectFOut = new RectF(lightSize, topOut, (int)progressLength, topOut+sizeOut);
+        //圆角
+        float[] floatsIn;
+        float[] floatsOut;
         if(isRadius){
-            pathIn.addRoundRect(new RectF(0, 0, width, height), new float[]{radius, radius, radius, radius, radius, radius, radius, radius}, Path.Direction.CW);
-            pathOut.addRoundRect(new RectF(0, 0, width/2, height), new float[]{radius, radius, radius, radius, radius, radius, radius, radius}, Path.Direction.CW);
+            floatsIn = new float[]{radius, radius, radius, radius, radius, radius, radius, radius};
+            floatsOut = new float[]{radius, radius, progressRadius, progressRadius, progressRadius, progressRadius, radius, radius};
         }else{
-            pathIn.addRoundRect(new RectF(0, 0, width, height), new float[]{leftTopRadius, leftTopRadius, rightTopRadius, rightTopRadius, rightBottomRadius, rightBottomRadius, leftBottomRadius, leftBottomRadius}, Path.Direction.CW);
-            pathOut.addRoundRect(new RectF(0, 0, width/2, height), new float[]{leftTopRadius, leftTopRadius, rightTopRadius, rightTopRadius, rightBottomRadius, rightBottomRadius, leftBottomRadius, leftBottomRadius}, Path.Direction.CW);
+            floatsIn = new float[]{leftTopRadius, leftTopRadius, rightTopRadius, rightTopRadius, rightBottomRadius, rightBottomRadius, leftBottomRadius, leftBottomRadius};
+            floatsOut = new float[]{leftTopRadius, leftTopRadius, progressRadius, progressRadius, progressRadius, progressRadius, leftBottomRadius, leftBottomRadius};
         }
+        pathIn.addRoundRect(rectFIn, floatsIn, Path.Direction.CW);
+        pathOut.addRoundRect(rectFOut, floatsOut, Path.Direction.CW);
+        pathLight.addRoundRect(rectFIn, floatsIn, Path.Direction.CW);
+        pathStroke.addRoundRect(rectFIn, floatsIn, Path.Direction.CW);
+        pathOut.op(pathIn, Path.Op.INTERSECT); //交集
 
-        canvas.drawPath(pathIn, paintIn);
-        canvas.drawPath(pathOut, paintOut);
+        canvas.drawPath(pathLight, lightPaint);
+        canvas.drawPath(pathIn, inPaint);
+        if(lightShow){
+            canvas.drawPath(pathOut, outPaint);
+        }
+        if(strokeShow){
+            canvas.drawPath(pathStroke, strokePaint);
+        }
     }
+
 }
+
+
+//        if(isRadius){
+//            pathIn.addRoundRect(new RectF(lightSize, topIn, width-lightSize, topIn+sizeIn), new float[]{radius, radius, radius, radius, radius, radius, radius, radius}, Path.Direction.CW);
+//            pathOut.addRoundRect(new RectF(lightSize, topOut, width/2-lightSize, topOut+sizeOut), new float[]{radius, radius, progressRadius, progressRadius, progressRadius, progressRadius, radius, radius}, Path.Direction.CW);
+//            pathLight.addRoundRect(new RectF(lightSize, topIn, width-lightSize, topIn+sizeIn), new float[]{radius, radius, radius, radius, radius, radius, radius, radius}, Path.Direction.CW);
+//            pathStroke.addRoundRect(new RectF(lightSize, topIn, width-lightSize, topIn+sizeIn), new float[]{radius, radius, radius, radius, radius, radius, radius, radius}, Path.Direction.CW);
+//        }else{
+//            pathIn.addRoundRect(new RectF(lightSize, topIn, width-lightSize, topIn+sizeIn), new float[]{leftTopRadius, leftTopRadius, rightTopRadius, rightTopRadius, rightBottomRadius, rightBottomRadius, leftBottomRadius, leftBottomRadius}, Path.Direction.CW);
+//            pathOut.addRoundRect(new RectF(lightSize, topOut, width/2-lightSize, topOut+sizeOut), new float[]{leftTopRadius, leftTopRadius, progressRadius, progressRadius, progressRadius, progressRadius, leftBottomRadius, leftBottomRadius}, Path.Direction.CW);
+//            pathLight.addRoundRect(new RectF(lightSize, topIn, width-lightSize, topIn+sizeIn), new float[]{leftTopRadius, leftTopRadius, rightTopRadius, rightTopRadius, rightBottomRadius, rightBottomRadius, leftBottomRadius, leftBottomRadius}, Path.Direction.CW);
+//            pathStroke.addRoundRect(new RectF(lightSize, topIn, width-lightSize, topIn+sizeIn), new float[]{leftTopRadius, leftTopRadius, rightTopRadius, rightTopRadius, rightBottomRadius, rightBottomRadius, leftBottomRadius, leftBottomRadius}, Path.Direction.CW);
+//        }
