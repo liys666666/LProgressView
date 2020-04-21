@@ -29,12 +29,11 @@
           style="@style/text"
           android:text="渐变"/>
       <com.liys.view.LineProgressView
+          android:id="@+id/progressView2"
           style="@style/base"
-          app:size_in="30dp"
-          app:size_out="30dp"
           app:color_in="@color/colorPrimaryDark"
           app:color_out="#FCD728"
-          app:radius="25dp"
+          app:radius="20dp"
           app:progress_radius="20dp"
           app:progress="50"/>
   </LinearLayout>
@@ -44,7 +43,7 @@
       android:layout_height="wrap_content">
       <TextView
           style="@style/text"
-          android:text="渐变发光"/>
+          android:text="发光"/>
       <com.liys.view.LineProgressView
           android:id="@+id/progressView"
           style="@style/base"
@@ -55,10 +54,11 @@
           app:radius="20dp"
           app:progress_radius="20dp"
           app:light_show="true"
-          app:text_size="15sp"/>
+          app:text_size="15sp"
+          app:progress="50"/>
   </LinearLayout>
 
-    <!--文字边框-->
+  <!--文字边框-->
   <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content">
@@ -67,18 +67,43 @@
           android:text="文字边框"/>
       <com.liys.view.LineProgressView
           style="@style/base"
+          app:color_in="@color/colorPrimaryDark"
+          app:color_out="#FCD728"
+          app:radius="20dp"
+          app:progress_radius="20dp"
+          app:stroke_width="2dp"
+          app:stroke_show="true"
+          app:stroke_color="#ffffff"
+          app:text_size="15sp"
+          app:text_show="true"
+          app:progress="50"/>
+  </LinearLayout>
+
+
+  <!--组合-->
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:clipChildren="false"
+      android:clipToPadding="false">
+      <TextView
+          style="@style/text"
+          android:text="混合"/>
+      <com.liys.view.LineProgressView
+          android:id="@+id/progressView5"
+          style="@style/base"
           app:size_in="30dp"
           app:size_out="30dp"
           app:color_in="@color/colorPrimaryDark"
           app:color_out="#FCD728"
           app:radius="20dp"
           app:progress_radius="20dp"
-          app:light_show="true"
           app:stroke_width="1dp"
           app:stroke_show="true"
           app:text_size="15sp"
           app:text_show="true"
-          app:progress="50"/>
+          app:light_show="true"
+          app:progress="90"/>
   </LinearLayout>
 
   <SeekBar

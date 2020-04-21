@@ -59,6 +59,8 @@ public abstract class LBaseProgressView extends View{
     protected double maxProgress; //总数
     protected double progress; //当前进度
 
+    protected int blankSpace; //空白距离
+
     public LBaseProgressView(Context context) {
         this(context, null);
     }
@@ -82,6 +84,13 @@ public abstract class LBaseProgressView extends View{
                 }
                 if(sizeOut ==0){
                     sizeOut = height;
+                }
+                blankSpace = (height-sizeIn)/2;
+                if(lightShow){
+                    BlurMaskFilter lightMaskFilter = new BlurMaskFilter(blankSpace, BlurMaskFilter.Blur.SOLID);
+                    lightPaint.setMaskFilter(lightMaskFilter);
+                    outPaint.setMaskFilter(lightMaskFilter);
+                    setLayerType(LAYER_TYPE_SOFTWARE, null); //禁用硬件加速
                 }
                 init();
             }
@@ -109,7 +118,7 @@ public abstract class LBaseProgressView extends View{
         textShow = typedArray.getBoolean(R.styleable.BaseProgressView_text_show, false);
 
         lightColor = typedArray.getColor(R.styleable.BaseProgressView_light_color, Color.WHITE);
-        lightSize = typedArray.getDimensionPixelSize(R.styleable.BaseProgressView_light_size, dp2px(8));
+        lightSize = typedArray.getDimensionPixelSize(R.styleable.BaseProgressView_light_size, dp2px(10));
         lightShow = typedArray.getBoolean(R.styleable.BaseProgressView_light_show, false);
         if(!lightShow){
             lightSize=0;
@@ -117,7 +126,7 @@ public abstract class LBaseProgressView extends View{
 
         strokeColor = typedArray.getColor(R.styleable.BaseProgressView_stroke_color, Color.WHITE);
         strokeWidth = typedArray.getDimensionPixelOffset(R.styleable.BaseProgressView_stroke_width, dp2px(0.5f));
-        strokeShow = typedArray.getBoolean(R.styleable.BaseProgressView_light_show, false);
+        strokeShow = typedArray.getBoolean(R.styleable.BaseProgressView_stroke_show, false);
 
         typedArray.recycle();
     }
@@ -137,12 +146,12 @@ public abstract class LBaseProgressView extends View{
         lightPaint.setAntiAlias(true);
         lightPaint.setColor(lightColor);
 
-        if(lightShow){
-            BlurMaskFilter lightMaskFilter = new BlurMaskFilter(lightSize, BlurMaskFilter.Blur.SOLID);
-            lightPaint.setMaskFilter(lightMaskFilter);
-            outPaint.setMaskFilter(lightMaskFilter);
-            setLayerType(LAYER_TYPE_SOFTWARE, null); //禁用硬件加速
-        }
+//        if(lightShow){
+//            BlurMaskFilter lightMaskFilter = new BlurMaskFilter(lightSize, BlurMaskFilter.Blur.SOLID);
+//            lightPaint.setMaskFilter(lightMaskFilter);
+//            outPaint.setMaskFilter(lightMaskFilter);
+//            setLayerType(LAYER_TYPE_SOFTWARE, null); //禁用硬件加速
+//        }
 
         //边框
         strokePaint.setStrokeWidth(strokeWidth);
