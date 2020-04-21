@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.graphics.BlurMaskFilter;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
@@ -36,6 +37,7 @@ public abstract class LBaseProgressView extends View{
     protected String text = ""; //当前 百分比
     protected int textSize;  //字体大小
     protected int textColor;  //字体大小
+    protected boolean textShow;
 
     //发光
     protected int lightColor;
@@ -104,6 +106,7 @@ public abstract class LBaseProgressView extends View{
         text = typedArray.getString(R.styleable.BaseProgressView_text);
         textSize = typedArray.getDimensionPixelSize(R.styleable.BaseProgressView_text_size, sp2px(10));
         textColor = typedArray.getColor(R.styleable.BaseProgressView_text_color, Color.WHITE);
+        textShow = typedArray.getBoolean(R.styleable.BaseProgressView_text_show, true);
 
         lightColor = typedArray.getColor(R.styleable.BaseProgressView_light_color, Color.WHITE);
         lightSize = typedArray.getDimensionPixelSize(R.styleable.BaseProgressView_light_size, dp2px(8));
@@ -113,7 +116,7 @@ public abstract class LBaseProgressView extends View{
         }
 
         strokeColor = typedArray.getColor(R.styleable.BaseProgressView_stroke_color, Color.WHITE);
-        strokeWidth = typedArray.getDimensionPixelOffset(R.styleable.BaseProgressView_stroke_size, dp2px(0.5f));
+        strokeWidth = typedArray.getDimensionPixelOffset(R.styleable.BaseProgressView_stroke_width, dp2px(0.5f));
         strokeShow = typedArray.getBoolean(R.styleable.BaseProgressView_light_show, false);
 
         typedArray.recycle();
@@ -134,10 +137,12 @@ public abstract class LBaseProgressView extends View{
         lightPaint.setAntiAlias(true);
         lightPaint.setColor(lightColor);
 
-        BlurMaskFilter lightMaskFilter = new BlurMaskFilter(lightSize, BlurMaskFilter.Blur.SOLID);
-        lightPaint.setMaskFilter(lightMaskFilter);
-        outPaint.setMaskFilter(lightMaskFilter);
-        setLayerType(LAYER_TYPE_SOFTWARE, null); //禁用硬件加速
+        if(lightShow){
+            BlurMaskFilter lightMaskFilter = new BlurMaskFilter(lightSize, BlurMaskFilter.Blur.SOLID);
+            lightPaint.setMaskFilter(lightMaskFilter);
+            outPaint.setMaskFilter(lightMaskFilter);
+            setLayerType(LAYER_TYPE_SOFTWARE, null); //禁用硬件加速
+        }
 
         //边框
         strokePaint.setStrokeWidth(strokeWidth);
@@ -146,6 +151,27 @@ public abstract class LBaseProgressView extends View{
         strokePaint.setStyle(Paint.Style.STROKE);
     }
 
+    /**
+     * 获取文字区域
+     * @param text
+     * @return
+     */
+    protected Rect getTextRect(String text){
+        Rect rect = new Rect();
+        textPaint.getTextBounds(text, 0, text.length(), rect);
+        return rect;
+    }
+
+    protected int getBaseline(Paint paint){
+        Paint.FontMetricsInt fontMetrics = paint.getFontMetricsInt();
+        // 获取文字的高
+        int fontTotalHeight = fontMetrics.bottom - fontMetrics.top;
+        // 计算基线到中心点的距离
+        int offY = fontTotalHeight / 2 - fontMetrics.bottom;
+        // 计算基线位置
+        int baseline = (getMeasuredHeight() + fontTotalHeight) / 2 - offY;
+        return baseline;
+    }
 
     protected int sp2px(float sp) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, getResources().getDisplayMetrics());
@@ -225,5 +251,6 @@ public abstract class LBaseProgressView extends View{
 
     public void setProgress(double progress) {
         this.progress = progress;
+        invalidate();
     }
 }

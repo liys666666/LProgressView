@@ -13,12 +13,14 @@
       android:layout_width="match_parent"
       android:layout_height="50dp"
       android:layout_margin="20dp"
-      app:size_in="40dp"
-      app:size_out="40dp"
+      app:size_in="30dp"
+      app:size_out="30dp"
       app:color_in="@color/colorPrimaryDark"
       app:color_out="#FCD728"
       app:radius="25dp"
-      app:progress_radius="0dp"/>
+      app:progress_radius="25dp"
+      app:light_show="true"
+      app:text_size="15sp"/>
   <!--app:color_in="#005B94"-->
 
   <!--<com.liys.view.TestView-->

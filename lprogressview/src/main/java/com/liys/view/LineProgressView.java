@@ -3,12 +3,13 @@ package com.liys.view;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
+import android.graphics.LinearGradient;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.graphics.Shader;
+import android.support.annotation.ArrayRes;
+import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
 
 /**
@@ -35,6 +36,9 @@ public class LineProgressView extends LBaseProgressView {
     protected float progressRadius;
 
     protected boolean isRadius = false; //true使用radius   false使用leftTopRadius...
+
+    //文字偏移量(进度条--左边距离)
+    protected int offTextX;
 
     public LineProgressView(Context context) {
         this(context, null);
@@ -67,8 +71,41 @@ public class LineProgressView extends LBaseProgressView {
 
     @Override
     public void init() {
-//        LinearGradient gradient =new LinearGradient(0, 0, 0, height, new int[]{Color.BLUE, Color.GRAY}, null, Shader.TileMode.CLAMP);  //参数一为渐变起
-//        outPaint.setShader(gradient);
+        offTextX = dp2px(10);
+    }
+
+
+    /**
+     * 设置渐变
+     * @param isHorizontal 是否水平
+     * @param isHorizontal 是否水平渐变  (水平：左到右  垂直：上到下)
+     * @param color 颜色数组
+     */
+    public void setOutGradient(final boolean isHorizontal, final @ColorInt int... color){
+        post(new Runnable() {
+            @Override
+            public void run() {
+                int[] colorResArr = new int[color.length];
+                for (int i = 0; i < color.length; i++) {
+                    colorResArr[i] = color[i];
+                }
+                LinearGradient gradient;
+                int topOut = (height-sizeOut)/2;
+                if(isHorizontal){ //水平
+                    gradient =new LinearGradient(0, 0, width, 0, colorResArr, null, Shader.TileMode.CLAMP);  //参数一为渐变起
+                }else{
+                    gradient =new LinearGradient(0, topOut, 0, topOut+sizeOut, colorResArr, null, Shader.TileMode.CLAMP);  //参数一为渐变起
+                }
+                outPaint.setShader(gradient);
+            }
+        });
+    }
+    public void setOutGradient(@ColorInt int... color){
+        setOutGradient(true, color);
+    }
+
+    public void setOutGradientArray(boolean isHorizontal, @ArrayRes int arrayRes){
+        setOutGradient(isHorizontal, getResources().getIntArray(arrayRes));
     }
 
     @SuppressLint("DrawAllocation")
@@ -105,17 +142,48 @@ public class LineProgressView extends LBaseProgressView {
         pathStroke.addRoundRect(rectFIn, floatsIn, Path.Direction.CW);
         pathOut.op(pathIn, Path.Op.INTERSECT); //交集
 
+        if(lightShow){
+            canvas.drawPath(pathLight, lightPaint);
+        }
+
         canvas.drawPath(pathLight, lightPaint);
         canvas.drawPath(pathIn, inPaint);
-        if(lightShow){
-            canvas.drawPath(pathOut, outPaint);
-        }
+        canvas.drawPath(pathOut, outPaint);
+
         if(strokeShow){
             canvas.drawPath(pathStroke, strokePaint);
         }
+
+        drawText(canvas, progressLength);
     }
 
+    /**
+     * 绘制文字
+     * @param canvas
+     * @return
+     */
+    protected void drawText(Canvas canvas, double progressLength){
+        if(textShow){
+            String text = (int)progress + "%";
+            int startX = dp2px(10)+lightSize;
+            int endX = startX + getTextRect(text).width()+offTextX; //文字结束位置
+            if(endX < progressLength){
+                startX = (int) progressLength-getTextRect(text).width()-offTextX;
+            }
+            canvas.drawText(text, startX, getBaseline(textPaint), textPaint);
+        }
+    }
+
+    public int getOffTextX() {
+        return offTextX;
+    }
+
+    public void setOffTextX(int offTextX) {
+        this.offTextX = offTextX;
+    }
 }
+
+
 
 
 //        if(isRadius){
