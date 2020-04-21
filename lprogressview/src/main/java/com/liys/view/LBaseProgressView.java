@@ -100,13 +100,13 @@ public abstract class LBaseProgressView extends View{
         sizeIn = typedArray.getDimensionPixelOffset(R.styleable.BaseProgressView_size_in, 0);
         sizeOut = typedArray.getDimensionPixelOffset(R.styleable.BaseProgressView_size_out, 0);
 
-        colorIn = typedArray.getColor(R.styleable.BaseProgressView_color_in, Color.WHITE);
+        colorIn = typedArray.getColor(R.styleable.BaseProgressView_color_in, Color.GRAY);
         colorOut = typedArray.getColor(R.styleable.BaseProgressView_color_out, Color.YELLOW);
 
         text = typedArray.getString(R.styleable.BaseProgressView_text);
         textSize = typedArray.getDimensionPixelSize(R.styleable.BaseProgressView_text_size, sp2px(10));
         textColor = typedArray.getColor(R.styleable.BaseProgressView_text_color, Color.WHITE);
-        textShow = typedArray.getBoolean(R.styleable.BaseProgressView_text_show, true);
+        textShow = typedArray.getBoolean(R.styleable.BaseProgressView_text_show, false);
 
         lightColor = typedArray.getColor(R.styleable.BaseProgressView_light_color, Color.WHITE);
         lightSize = typedArray.getDimensionPixelSize(R.styleable.BaseProgressView_light_size, dp2px(8));

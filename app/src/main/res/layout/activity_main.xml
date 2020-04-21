@@ -8,26 +8,79 @@
     tools:context=".MainActivity"
     android:background="#000000">
 
-  <com.liys.view.LineProgressView
-      android:id="@+id/progressView"
+  <!-- 普通 -->
+  <LinearLayout
       android:layout_width="match_parent"
-      android:layout_height="50dp"
-      android:layout_margin="20dp"
-      app:size_in="30dp"
-      app:size_out="30dp"
-      app:color_in="@color/colorPrimaryDark"
-      app:color_out="#FCD728"
-      app:radius="25dp"
-      app:progress_radius="25dp"
-      app:light_show="true"
-      app:text_size="15sp"/>
-  <!--app:color_in="#005B94"-->
+      android:layout_height="wrap_content">
+    <TextView
+        style="@style/text"
+        android:text="普通"/>
+    <com.liys.view.LineProgressView
+        style="@style/base"
+        app:progress_radius="20dp"
+        app:progress="50"/>
+  </LinearLayout>
 
-  <!--<com.liys.view.TestView-->
-      <!--android:layout_width="100dp"-->
-      <!--android:layout_height="100dp"-->
-      <!--android:layout_gravity="center"-->
-      <!--android:layout_marginTop="20dp"/>-->
+    <!--发光-->
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+      <TextView
+          style="@style/text"
+          android:text="渐变"/>
+      <com.liys.view.LineProgressView
+          style="@style/base"
+          app:size_in="30dp"
+          app:size_out="30dp"
+          app:color_in="@color/colorPrimaryDark"
+          app:color_out="#FCD728"
+          app:radius="25dp"
+          app:progress_radius="20dp"
+          app:progress="50"/>
+  </LinearLayout>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+      <TextView
+          style="@style/text"
+          android:text="渐变发光"/>
+      <com.liys.view.LineProgressView
+          android:id="@+id/progressView"
+          style="@style/base"
+          app:size_in="30dp"
+          app:size_out="30dp"
+          app:color_in="@color/colorPrimaryDark"
+          app:color_out="#FCD728"
+          app:radius="20dp"
+          app:progress_radius="20dp"
+          app:light_show="true"
+          app:text_size="15sp"/>
+  </LinearLayout>
+
+    <!--文字边框-->
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+      <TextView
+          style="@style/text"
+          android:text="文字边框"/>
+      <com.liys.view.LineProgressView
+          style="@style/base"
+          app:size_in="30dp"
+          app:size_out="30dp"
+          app:color_in="@color/colorPrimaryDark"
+          app:color_out="#FCD728"
+          app:radius="20dp"
+          app:progress_radius="20dp"
+          app:light_show="true"
+          app:stroke_width="1dp"
+          app:stroke_show="true"
+          app:text_size="15sp"
+          app:text_show="true"
+          app:progress="50"/>
+  </LinearLayout>
+
   <SeekBar
       android:id="@+id/seekBar"
       android:layout_width="match_parent"

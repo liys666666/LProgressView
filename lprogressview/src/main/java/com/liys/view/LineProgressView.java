@@ -35,7 +35,7 @@ public class LineProgressView extends LBaseProgressView {
     protected float rightBottomRadius;
     protected float progressRadius;
 
-    protected boolean isRadius = false; //true使用radius   false使用leftTopRadius...
+    protected boolean isRadius = true; //true使用radius   false使用leftTopRadius...
 
     //文字偏移量(进度条--左边距离)
     protected int offTextX;
@@ -58,20 +58,27 @@ public class LineProgressView extends LBaseProgressView {
      * @param typedArray
      */
     private void initAttrs(TypedArray typedArray){
-        radius = typedArray.getDimension(R.styleable.LineProgressView_radius, 0);
+        radius = typedArray.getDimension(R.styleable.LineProgressView_radius, -1);
         leftTopRadius = typedArray.getDimension(R.styleable.LineProgressView_left_top_radius, 0);
         leftBottomRadius = typedArray.getDimension(R.styleable.LineProgressView_left_bottom_radius, 0);
         rightTopRadius = typedArray.getDimension(R.styleable.LineProgressView_right_top_radius, 0);
         rightBottomRadius = typedArray.getDimension(R.styleable.LineProgressView_right_bottom_radius, 0);
-        if(radius!=0){ //没有赋值， 则使用4个角处理
+        progressRadius = typedArray.getDimension(R.styleable.LineProgressView_progress_radius, 0);
+
+        if(radius==-1){ //没有赋值，则自己处理
+            isRadius = false;
+        }
+        if(leftTopRadius==0 || leftBottomRadius==0 || rightTopRadius==0 || rightBottomRadius==0){
             isRadius = true;
         }
-        progressRadius = typedArray.getDimension(R.styleable.LineProgressView_progress_radius, 0);
     }
 
     @Override
     public void init() {
         offTextX = dp2px(10);
+        if(isRadius && radius==-1){
+            radius = sizeIn/2;
+        }
     }
 
 
@@ -145,8 +152,6 @@ public class LineProgressView extends LBaseProgressView {
         if(lightShow){
             canvas.drawPath(pathLight, lightPaint);
         }
-
-        canvas.drawPath(pathLight, lightPaint);
         canvas.drawPath(pathIn, inPaint);
         canvas.drawPath(pathOut, outPaint);
 
