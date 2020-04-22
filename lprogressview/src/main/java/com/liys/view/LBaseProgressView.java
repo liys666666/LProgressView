@@ -51,8 +51,8 @@ public abstract class LBaseProgressView extends View{
     protected boolean strokeShow;
 
     //画笔
-    protected Paint inPaint = new Paint();
-    protected Paint outPaint = new Paint();
+    protected Paint progressBgPaint = new Paint();
+    protected Paint progressPaint = new Paint();
     protected Paint textPaint = new Paint();
     protected Paint lightPaint = new Paint(); //发光 画笔
     protected Paint strokePaint = new Paint(); //边框 边框画笔
@@ -87,7 +87,7 @@ public abstract class LBaseProgressView extends View{
                 if(lightShow && blankSpace>0){
                     BlurMaskFilter lightMaskFilter = new BlurMaskFilter(blankSpace, BlurMaskFilter.Blur.SOLID);
                     lightPaint.setMaskFilter(lightMaskFilter);
-                    outPaint.setMaskFilter(lightMaskFilter);
+                    progressPaint.setMaskFilter(lightMaskFilter);
                     setLayerType(LAYER_TYPE_SOFTWARE, null); //禁用硬件加速
                 }
                 init();
@@ -127,11 +127,11 @@ public abstract class LBaseProgressView extends View{
     }
 
     private void initBaseView(){
-        inPaint.setAntiAlias(true);
-        inPaint.setColor(progressColorBackground);
+        progressBgPaint.setAntiAlias(true);
+        progressBgPaint.setColor(progressColorBackground);
 
-        outPaint.setAntiAlias(true);
-        outPaint.setColor(progressColor);
+        progressPaint.setAntiAlias(true);
+        progressPaint.setColor(progressColor);
 
         textPaint.setAntiAlias(true);
         textPaint.setColor(textColor);
@@ -144,7 +144,7 @@ public abstract class LBaseProgressView extends View{
 //        if(lightShow){
 //            BlurMaskFilter lightMaskFilter = new BlurMaskFilter(lightSize, BlurMaskFilter.Blur.SOLID);
 //            lightPaint.setMaskFilter(lightMaskFilter);
-//            outPaint.setMaskFilter(lightMaskFilter);
+//            progressPaint.setMaskFilter(lightMaskFilter);
 //            setLayerType(LAYER_TYPE_SOFTWARE, null); //禁用硬件加速
 //        }
 
@@ -334,5 +334,43 @@ public abstract class LBaseProgressView extends View{
         return progress;
     }
 
+    public Paint getProgressBgPaint() {
+        return progressBgPaint;
+    }
 
+    public void setProgressBgPaint(Paint progressBgPaint) {
+        this.progressBgPaint = progressBgPaint;
+    }
+
+    public Paint getProgressPaint() {
+        return progressPaint;
+    }
+
+    public void setProgressPaint(Paint progressPaint) {
+        this.progressPaint = progressPaint;
+    }
+
+    public Paint getTextPaint() {
+        return textPaint;
+    }
+
+    public void setTextPaint(Paint textPaint) {
+        this.textPaint = textPaint;
+    }
+
+    public Paint getLightPaint() {
+        return lightPaint;
+    }
+
+    public void setLightPaint(Paint lightPaint) {
+        this.lightPaint = lightPaint;
+    }
+
+    public Paint getStrokePaint() {
+        return strokePaint;
+    }
+
+    public void setStrokePaint(Paint strokePaint) {
+        this.strokePaint = strokePaint;
+    }
 }

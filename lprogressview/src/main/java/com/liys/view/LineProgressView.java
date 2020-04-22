@@ -103,7 +103,7 @@ public class LineProgressView extends LBaseProgressView {
                 }else{
                     gradient =new LinearGradient(0, topOut, 0, topOut+ progressSize, colorResArr, null, Shader.TileMode.CLAMP);  //参数一为渐变起
                 }
-                outPaint.setShader(gradient);
+                progressPaint.setShader(gradient);
             }
         });
     }
@@ -152,8 +152,8 @@ public class LineProgressView extends LBaseProgressView {
         if(lightShow){
             canvas.drawPath(pathLight, lightPaint);
         }
-        canvas.drawPath(pathIn, inPaint);
-        canvas.drawPath(pathOut, outPaint);
+        canvas.drawPath(pathIn, progressBgPaint);
+        canvas.drawPath(pathOut, progressPaint);
 
         if(strokeShow){
             canvas.drawPath(pathStroke, strokePaint);

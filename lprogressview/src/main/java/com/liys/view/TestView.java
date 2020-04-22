@@ -8,7 +8,6 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.view.View;
 
 /**
  * @Description:
@@ -58,7 +57,7 @@ public class TestView extends LBaseProgressView {
         //圆角
         float[] floatsOut = new float[]{radius, radius, radius, radius, radius, radius, radius, radius};
         pathOut.addRoundRect(rectFOut, floatsOut, Path.Direction.CW);
-        canvas.drawPath(pathOut, outPaint);
+        canvas.drawPath(pathOut, progressPaint);
 
     }
 }
