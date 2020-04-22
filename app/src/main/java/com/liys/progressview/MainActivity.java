@@ -7,13 +7,15 @@ import android.widget.SeekBar;
 
 import com.liys.view.LineProgressView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener{
 
     LineProgressView progressView;
     LineProgressView progressView2;
     LineProgressView progressView5;
     LineProgressView progressView6;
+    LineProgressView progressView7;
     SeekBar seekBar;
+    SeekBar seekBar2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +26,9 @@ public class MainActivity extends AppCompatActivity {
         progressView2 = findViewById(R.id.progressView2);
         progressView5 = findViewById(R.id.progressView5);
         progressView6 = findViewById(R.id.progressView6);
+        progressView7 = findViewById(R.id.progressView7);
         seekBar = findViewById(R.id.seekBar);
+        seekBar2 = findViewById(R.id.seekBar2);
 
         progressView2.setOutGradient(false, Color.RED, Color.YELLOW);
         progressView5.setOutGradient(Color.RED, Color.YELLOW);
@@ -33,24 +37,35 @@ public class MainActivity extends AppCompatActivity {
                 Color.RED,
                 Color.parseColor("#571100"));
 
-//        progressView.setProgress(50);
-//        seekBar.setMax(100);
-//        seekBar.setProgress(50);
-//        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-//            @Override
-//            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-//                progressView.setProgress(progress);
-//            }
-//
-//            @Override
-//            public void onStartTrackingTouch(SeekBar seekBar) {
-//
-//            }
-//
-//            @Override
-//            public void onStopTrackingTouch(SeekBar seekBar) {
-//
-//            }
-//        });
+        seekBar.setMax(20);
+        seekBar.setOnSeekBarChangeListener(this);
+
+        seekBar2.setMax(20);
+        seekBar2.setOnSeekBarChangeListener(this);
+    }
+
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        progress = progressView7.sp2px(progress);
+        switch (seekBar.getId()){
+            case R.id.seekBar:
+                progressView7.setRadius(progress);
+                progressView7.invalidate();
+                break;
+            case R.id.seekBar2:
+                progressView7.setProgressRadius(progress);
+                progressView7.invalidate();
+                break;
+        }
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+
     }
 }

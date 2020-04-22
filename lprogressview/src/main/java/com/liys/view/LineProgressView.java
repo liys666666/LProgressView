@@ -185,6 +185,63 @@ public class LineProgressView extends LBaseProgressView {
     public void setOffTextX(int offTextX) {
         this.offTextX = offTextX;
     }
+
+    public float getRadius() {
+        return radius;
+    }
+
+    public void setRadius(float radius) {
+        this.radius = radius;
+        invalidate();
+    }
+
+    public float getLeftTopRadius() {
+        return leftTopRadius;
+    }
+
+    public void setLeftTopRadius(float leftTopRadius) {
+        this.leftTopRadius = leftTopRadius;
+    }
+
+    public float getLeftBottomRadius() {
+        return leftBottomRadius;
+    }
+
+    public void setLeftBottomRadius(float leftBottomRadius) {
+        this.leftBottomRadius = leftBottomRadius;
+    }
+
+    public float getRightTopRadius() {
+        return rightTopRadius;
+    }
+
+    public void setRightTopRadius(float rightTopRadius) {
+        this.rightTopRadius = rightTopRadius;
+    }
+
+    public float getRightBottomRadius() {
+        return rightBottomRadius;
+    }
+
+    public void setRightBottomRadius(float rightBottomRadius) {
+        this.rightBottomRadius = rightBottomRadius;
+    }
+
+    public float getProgressRadius() {
+        return progressRadius;
+    }
+
+    public void setProgressRadius(float progressRadius) {
+        this.progressRadius = progressRadius;
+    }
+
+    public boolean isRadius() {
+        return isRadius;
+    }
+
+    public void setRadius(boolean radius) {
+        isRadius = radius;
+    }
 }
 
 

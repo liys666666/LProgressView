@@ -213,10 +213,10 @@ public abstract class LBaseProgressView extends View{
         return decimalFormat.format(value);
     }
 
-    protected int sp2px(float sp) {
+    public int sp2px(float sp) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, getResources().getDisplayMetrics());
     }
-    protected int dp2px(float dp) {
+    public int dp2px(float dp) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources().getDisplayMetrics());
     }
 
