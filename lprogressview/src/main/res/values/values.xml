@@ -14,7 +14,6 @@
     <attr name="text_decimal_num" format="integer"/>  //保留多少位小数
 
     <attr name="light_color" format="color"/> //发光颜色
-    <attr name="light_size" format="dimension"/> //发光大小
     <attr name="light_show" format="boolean"/> //是否需要发光
 
     <attr name="stroke_color" format="color"/> //边框颜色
