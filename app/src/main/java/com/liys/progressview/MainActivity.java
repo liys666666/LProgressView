@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     LineProgressView progressView;
     LineProgressView progressView2;
     LineProgressView progressView5;
+    LineProgressView progressView6;
     SeekBar seekBar;
 
     @Override
@@ -22,10 +23,15 @@ public class MainActivity extends AppCompatActivity {
         progressView = findViewById(R.id.progressView);
         progressView2 = findViewById(R.id.progressView2);
         progressView5 = findViewById(R.id.progressView5);
+        progressView6 = findViewById(R.id.progressView6);
         seekBar = findViewById(R.id.seekBar);
 
         progressView2.setOutGradient(false, Color.RED, Color.YELLOW);
         progressView5.setOutGradient(Color.RED, Color.YELLOW);
+        progressView6.setOutGradient(false, Color.parseColor("#571100"),
+                Color.RED,
+                Color.RED,
+                Color.parseColor("#571100"));
 
 //        progressView.setProgress(50);
 //        seekBar.setMax(100);
