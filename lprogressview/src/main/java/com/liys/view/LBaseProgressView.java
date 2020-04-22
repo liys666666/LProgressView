@@ -11,6 +11,8 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 
+import java.text.DecimalFormat;
+
 /**
  * @Description:
  * @Author: liys
@@ -28,20 +30,19 @@ public abstract class LBaseProgressView extends View{
     protected int width;
     protected int height;
     //进度条和背景
-    protected int sizeIn;
-    protected int sizeOut;
-    protected int colorIn;
-    protected int colorOut;
+    protected int progressSize;
+    protected int progressColorBackground;
+    protected int progressColor;
 
     //文字
     protected String text = ""; //当前 百分比
     protected int textSize;  //字体大小
     protected int textColor;  //字体大小
-    protected boolean textShow;
+    protected boolean textShow; //是否显示文字
+    protected int textDecimalNum; //保留小数 位数
 
     //发光
     protected int lightColor;
-    protected int lightSize;
     protected boolean lightShow;
 
     //边框
@@ -79,14 +80,11 @@ public abstract class LBaseProgressView extends View{
             public void run() {
                 width = getMeasuredWidth();
                 height = getMeasuredHeight();
-                if(sizeIn ==0){
-                    sizeIn = height;
+                if(progressSize == 0){
+                    progressSize = height;
                 }
-                if(sizeOut ==0){
-                    sizeOut = height;
-                }
-                blankSpace = (height-sizeIn)/2;
-                if(lightShow){
+                blankSpace = (height- progressSize)/2;
+                if(lightShow && blankSpace>0){
                     BlurMaskFilter lightMaskFilter = new BlurMaskFilter(blankSpace, BlurMaskFilter.Blur.SOLID);
                     lightPaint.setMaskFilter(lightMaskFilter);
                     outPaint.setMaskFilter(lightMaskFilter);
@@ -103,40 +101,37 @@ public abstract class LBaseProgressView extends View{
     private void initBaseAttrs(AttributeSet attrs){
         // 获取自定义属性
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.BaseProgressView);
-        maxProgress = typedArray.getInteger(R.styleable.BaseProgressView_max_progress, 100);
-        progress = typedArray.getInteger(R.styleable.BaseProgressView_progress, 0);
+        maxProgress = typedArray.getInteger(R.styleable.BaseProgressView_progress_max, 100);
+        progress = typedArray.getInteger(R.styleable.BaseProgressView_progress_value, 0);
 
-        sizeIn = typedArray.getDimensionPixelOffset(R.styleable.BaseProgressView_size_in, 0);
-        sizeOut = typedArray.getDimensionPixelOffset(R.styleable.BaseProgressView_size_out, 0);
+        progressSize = typedArray.getDimensionPixelOffset(R.styleable.BaseProgressView_progress_size, 0);
 
-        colorIn = typedArray.getColor(R.styleable.BaseProgressView_color_in, Color.GRAY);
-        colorOut = typedArray.getColor(R.styleable.BaseProgressView_color_out, Color.YELLOW);
+        progressColorBackground = typedArray.getColor(R.styleable.BaseProgressView_progress_color_background, Color.GRAY);
+        progressColor = typedArray.getColor(R.styleable.BaseProgressView_progress_color, Color.YELLOW);
 
-        text = typedArray.getString(R.styleable.BaseProgressView_text);
         textSize = typedArray.getDimensionPixelSize(R.styleable.BaseProgressView_text_size, sp2px(10));
         textColor = typedArray.getColor(R.styleable.BaseProgressView_text_color, Color.WHITE);
         textShow = typedArray.getBoolean(R.styleable.BaseProgressView_text_show, false);
+        textDecimalNum = typedArray.getInt(R.styleable.BaseProgressView_text_decimal_num, 0);
 
         lightColor = typedArray.getColor(R.styleable.BaseProgressView_light_color, Color.WHITE);
-        lightSize = typedArray.getDimensionPixelSize(R.styleable.BaseProgressView_light_size, dp2px(10));
         lightShow = typedArray.getBoolean(R.styleable.BaseProgressView_light_show, false);
-        if(!lightShow){
-            lightSize=0;
-        }
 
         strokeColor = typedArray.getColor(R.styleable.BaseProgressView_stroke_color, Color.WHITE);
         strokeWidth = typedArray.getDimensionPixelOffset(R.styleable.BaseProgressView_stroke_width, dp2px(0.5f));
         strokeShow = typedArray.getBoolean(R.styleable.BaseProgressView_stroke_show, false);
 
         typedArray.recycle();
+
+        refreshText();
     }
 
     private void initBaseView(){
         inPaint.setAntiAlias(true);
-        inPaint.setColor(colorIn);
+        inPaint.setColor(progressColorBackground);
 
         outPaint.setAntiAlias(true);
-        outPaint.setColor(colorOut);
+        outPaint.setColor(progressColor);
 
         textPaint.setAntiAlias(true);
         textPaint.setColor(textColor);
@@ -182,6 +177,42 @@ public abstract class LBaseProgressView extends View{
         return baseline;
     }
 
+    public void setProgress(double progress) {
+        this.progress = progress;
+        refreshText();
+    }
+
+    public void setMaxProgress(double maxProgress) {
+        this.maxProgress = maxProgress;
+        refreshText();
+    }
+
+    /**
+     * 刷新text
+     */
+    protected void refreshText(){
+        text = keepDecimals(progress/maxProgress*100)+"%";
+        invalidate();
+    }
+
+    /**
+     * 保留小数
+     * @param value
+     * @return
+     */
+    protected String keepDecimals(double value){
+        String format = "";
+        for (int i = 0; i < textDecimalNum; i++) {
+            if(i==0){
+                format = ".0";
+            }else{
+                format = format+"0";
+            }
+        }
+        DecimalFormat decimalFormat = new DecimalFormat(format);
+        return decimalFormat.format(value);
+    }
+
     protected int sp2px(float sp) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, getResources().getDisplayMetrics());
     }
@@ -190,36 +221,29 @@ public abstract class LBaseProgressView extends View{
     }
 
 //    对应set get方法
-    public int getSizeIn() {
-        return sizeIn;
+    public int getProgressSize() {
+        return progressSize;
     }
 
-    public void setSizeIn(int sizeIn) {
-        this.sizeIn = sizeIn;
+    public void setProgressSize(int progressSize) {
+        this.progressSize = progressSize;
     }
 
-    public int getSizeOut() {
-        return sizeOut;
+
+    public int getProgressColorBackground() {
+        return progressColorBackground;
     }
 
-    public void setSizeOut(int sizeOut) {
-        this.sizeOut = sizeOut;
+    public void setProgressColorBackground(int progressColorBackground) {
+        this.progressColorBackground = progressColorBackground;
     }
 
-    public int getColorIn() {
-        return colorIn;
+    public int getProgressColor() {
+        return progressColor;
     }
 
-    public void setColorIn(int colorIn) {
-        this.colorIn = colorIn;
-    }
-
-    public int getColorOut() {
-        return colorOut;
-    }
-
-    public void setColorOut(int colorOut) {
-        this.colorOut = colorOut;
+    public void setProgressColor(int progressColor) {
+        this.progressColor = progressColor;
     }
 
     public String getText() {
@@ -246,20 +270,69 @@ public abstract class LBaseProgressView extends View{
         this.textColor = textColor;
     }
 
-    public double getMaxProgress() {
-        return maxProgress;
+    public boolean isTextShow() {
+        return textShow;
     }
 
-    public void setMaxProgress(double maxProgress) {
-        this.maxProgress = maxProgress;
+    public void setTextShow(boolean textShow) {
+        this.textShow = textShow;
+    }
+
+    public int getTextDecimalNum() {
+        return textDecimalNum;
+    }
+
+    public void setTextDecimalNum(int textDecimalNum) {
+        this.textDecimalNum = textDecimalNum;
+    }
+
+    public int getLightColor() {
+        return lightColor;
+    }
+
+    public void setLightColor(int lightColor) {
+        this.lightColor = lightColor;
+    }
+
+    public boolean isLightShow() {
+        return lightShow;
+    }
+
+    public void setLightShow(boolean lightShow) {
+        this.lightShow = lightShow;
+    }
+
+    public int getStrokeWidth() {
+        return strokeWidth;
+    }
+
+    public void setStrokeWidth(int strokeWidth) {
+        this.strokeWidth = strokeWidth;
+    }
+
+    public int getStrokeColor() {
+        return strokeColor;
+    }
+
+    public void setStrokeColor(int strokeColor) {
+        this.strokeColor = strokeColor;
+    }
+
+    public boolean isStrokeShow() {
+        return strokeShow;
+    }
+
+    public void setStrokeShow(boolean strokeShow) {
+        this.strokeShow = strokeShow;
+    }
+
+    public double getMaxProgress() {
+        return maxProgress;
     }
 
     public double getProgress() {
         return progress;
     }
 
-    public void setProgress(double progress) {
-        this.progress = progress;
-        invalidate();
-    }
+
 }

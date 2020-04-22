@@ -39,7 +39,6 @@ public class LineProgressView extends LBaseProgressView {
 
     //文字偏移量(进度条--左边距离)
     protected int offTextX;
-    protected int offLightX;
 
     public LineProgressView(Context context) {
         this(context, null);
@@ -77,9 +76,8 @@ public class LineProgressView extends LBaseProgressView {
     @Override
     public void init() {
         offTextX = dp2px(10);
-        offLightX = dp2px(10);
         if(isRadius && radius==-1){
-            radius = sizeIn/2;
+            radius = progressSize /2;
         }
     }
 
@@ -99,11 +97,11 @@ public class LineProgressView extends LBaseProgressView {
                     colorResArr[i] = color[i];
                 }
                 LinearGradient gradient;
-                int topOut = (height-sizeOut)/2;
+                int topOut = (height- progressSize)/2;
                 if(isHorizontal){ //水平
                     gradient =new LinearGradient(0, 0, width, 0, colorResArr, null, Shader.TileMode.CLAMP);  //参数一为渐变起
                 }else{
-                    gradient =new LinearGradient(0, topOut, 0, topOut+sizeOut, colorResArr, null, Shader.TileMode.CLAMP);  //参数一为渐变起
+                    gradient =new LinearGradient(0, topOut, 0, topOut+ progressSize, colorResArr, null, Shader.TileMode.CLAMP);  //参数一为渐变起
                 }
                 outPaint.setShader(gradient);
             }
@@ -131,11 +129,10 @@ public class LineProgressView extends LBaseProgressView {
         double progressLength = progress/maxProgress*(width-blankSpace);
 
         //绘制区域
-        int topIn = (height-sizeIn)/2;
-        int topOut = (height-sizeOut)/2;
-        RectF rectFIn = new RectF(blankSpace, topIn, width-blankSpace, topIn+sizeIn);
-        RectF rectFOut = new RectF(blankSpace, topOut, (int)progressLength, topOut+sizeOut);
-        RectF rectFStroke = new RectF(blankSpace+strokeWidth/2, topIn+strokeWidth/2, width-blankSpace-strokeWidth/2, topIn+sizeIn-strokeWidth/2);
+        int top = (height- progressSize)/2;
+        RectF rectFIn = new RectF(blankSpace, top, width-blankSpace, top+ progressSize);
+        RectF rectFOut = new RectF(blankSpace, top, (int)progressLength, top+ progressSize);
+        RectF rectFStroke = new RectF(blankSpace+strokeWidth/2, top+strokeWidth/2, width-blankSpace-strokeWidth/2, top+progressSize-strokeWidth/2);
         //圆角
         float[] floatsIn;
         float[] floatsOut;
@@ -172,7 +169,6 @@ public class LineProgressView extends LBaseProgressView {
      */
     protected void drawText(Canvas canvas, double progressLength){
         if(textShow){
-            String text = (int)progress + "%";
             int startX = dp2px(10)+blankSpace;
             int endX = startX + getTextRect(text).width()+offTextX; //文字结束位置
             if(endX < progressLength){
@@ -192,16 +188,14 @@ public class LineProgressView extends LBaseProgressView {
 }
 
 
-
-
 //        if(isRadius){
-//            pathIn.addRoundRect(new RectF(blankSpace, topIn, width-blankSpace, topIn+sizeIn), new float[]{radius, radius, radius, radius, radius, radius, radius, radius}, Path.Direction.CW);
-//            pathOut.addRoundRect(new RectF(blankSpace, topOut, width/2-blankSpace, topOut+sizeOut), new float[]{radius, radius, progressRadius, progressRadius, progressRadius, progressRadius, radius, radius}, Path.Direction.CW);
-//            pathLight.addRoundRect(new RectF(blankSpace, topIn, width-blankSpace, topIn+sizeIn), new float[]{radius, radius, radius, radius, radius, radius, radius, radius}, Path.Direction.CW);
-//            pathStroke.addRoundRect(new RectF(blankSpace, topIn, width-blankSpace, topIn+sizeIn), new float[]{radius, radius, radius, radius, radius, radius, radius, radius}, Path.Direction.CW);
+//            pathIn.addRoundRect(new RectF(blankSpace, topIn, width-blankSpace, topIn+progressSize), new float[]{radius, radius, radius, radius, radius, radius, radius, radius}, Path.Direction.CW);
+//            pathOut.addRoundRect(new RectF(blankSpace, topOut, width/2-blankSpace, topOut+progressSize), new float[]{radius, radius, progressRadius, progressRadius, progressRadius, progressRadius, radius, radius}, Path.Direction.CW);
+//            pathLight.addRoundRect(new RectF(blankSpace, topIn, width-blankSpace, topIn+progressSize), new float[]{radius, radius, radius, radius, radius, radius, radius, radius}, Path.Direction.CW);
+//            pathStroke.addRoundRect(new RectF(blankSpace, topIn, width-blankSpace, topIn+progressSize), new float[]{radius, radius, radius, radius, radius, radius, radius, radius}, Path.Direction.CW);
 //        }else{
-//            pathIn.addRoundRect(new RectF(blankSpace, topIn, width-blankSpace, topIn+sizeIn), new float[]{leftTopRadius, leftTopRadius, rightTopRadius, rightTopRadius, rightBottomRadius, rightBottomRadius, leftBottomRadius, leftBottomRadius}, Path.Direction.CW);
-//            pathOut.addRoundRect(new RectF(blankSpace, topOut, width/2-blankSpace, topOut+sizeOut), new float[]{leftTopRadius, leftTopRadius, progressRadius, progressRadius, progressRadius, progressRadius, leftBottomRadius, leftBottomRadius}, Path.Direction.CW);
-//            pathLight.addRoundRect(new RectF(blankSpace, topIn, width-blankSpace, topIn+sizeIn), new float[]{leftTopRadius, leftTopRadius, rightTopRadius, rightTopRadius, rightBottomRadius, rightBottomRadius, leftBottomRadius, leftBottomRadius}, Path.Direction.CW);
-//            pathStroke.addRoundRect(new RectF(blankSpace, topIn, width-blankSpace, topIn+sizeIn), new float[]{leftTopRadius, leftTopRadius, rightTopRadius, rightTopRadius, rightBottomRadius, rightBottomRadius, leftBottomRadius, leftBottomRadius}, Path.Direction.CW);
+//            pathIn.addRoundRect(new RectF(blankSpace, topIn, width-blankSpace, topIn+progressSize), new float[]{leftTopRadius, leftTopRadius, rightTopRadius, rightTopRadius, rightBottomRadius, rightBottomRadius, leftBottomRadius, leftBottomRadius}, Path.Direction.CW);
+//            pathOut.addRoundRect(new RectF(blankSpace, topOut, width/2-blankSpace, topOut+progressSize), new float[]{leftTopRadius, leftTopRadius, progressRadius, progressRadius, progressRadius, progressRadius, leftBottomRadius, leftBottomRadius}, Path.Direction.CW);
+//            pathLight.addRoundRect(new RectF(blankSpace, topIn, width-blankSpace, topIn+progressSize), new float[]{leftTopRadius, leftTopRadius, rightTopRadius, rightTopRadius, rightBottomRadius, rightBottomRadius, leftBottomRadius, leftBottomRadius}, Path.Direction.CW);
+//            pathStroke.addRoundRect(new RectF(blankSpace, topIn, width-blankSpace, topIn+progressSize), new float[]{leftTopRadius, leftTopRadius, rightTopRadius, rightTopRadius, rightBottomRadius, rightBottomRadius, leftBottomRadius, leftBottomRadius}, Path.Direction.CW);
 //        }

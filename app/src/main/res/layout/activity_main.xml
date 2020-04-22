@@ -18,7 +18,7 @@
     <com.liys.view.LineProgressView
         style="@style/base"
         app:progress_radius="20dp"
-        app:progress="50"/>
+        app:progress_value="50"/>
   </LinearLayout>
 
     <!--发光-->
@@ -31,11 +31,9 @@
       <com.liys.view.LineProgressView
           android:id="@+id/progressView2"
           style="@style/base"
-          app:color_in="@color/colorPrimaryDark"
-          app:color_out="#FCD728"
           app:radius="20dp"
           app:progress_radius="20dp"
-          app:progress="50"/>
+          app:progress_value="50"/>
   </LinearLayout>
 
   <LinearLayout
@@ -47,15 +45,14 @@
       <com.liys.view.LineProgressView
           android:id="@+id/progressView"
           style="@style/base"
-          app:size_in="30dp"
-          app:size_out="30dp"
-          app:color_in="@color/colorPrimaryDark"
-          app:color_out="#FCD728"
+          app:progress_size="30dp"
+          app:progress_color_background="@color/colorPrimaryDark"
+          app:progress_color="#FCD728"
           app:radius="20dp"
           app:progress_radius="20dp"
           app:light_show="true"
           app:text_size="15sp"
-          app:progress="50"/>
+          app:progress_value="50"/>
   </LinearLayout>
 
   <!--文字边框-->
@@ -67,8 +64,8 @@
           android:text="文字边框"/>
       <com.liys.view.LineProgressView
           style="@style/base"
-          app:color_in="@color/colorPrimaryDark"
-          app:color_out="#FCD728"
+          app:progress_color_background="@color/colorPrimaryDark"
+          app:progress_color="#FCD728"
           app:radius="20dp"
           app:progress_radius="20dp"
           app:stroke_width="2dp"
@@ -76,7 +73,7 @@
           app:stroke_color="#ffffff"
           app:text_size="15sp"
           app:text_show="true"
-          app:progress="50"/>
+          app:progress_value="50"/>
   </LinearLayout>
 
 
@@ -88,14 +85,13 @@
       android:clipToPadding="false">
       <TextView
           style="@style/text"
-          android:text="混合"/>
+          android:text="混合1"/>
       <com.liys.view.LineProgressView
           android:id="@+id/progressView5"
           style="@style/base"
-          app:size_in="30dp"
-          app:size_out="30dp"
-          app:color_in="@color/colorPrimaryDark"
-          app:color_out="#FCD728"
+          app:progress_size="30dp"
+          app:progress_color_background="@color/colorPrimaryDark"
+          app:progress_color="#FCD728"
           app:radius="20dp"
           app:progress_radius="20dp"
           app:stroke_width="1dp"
@@ -103,7 +99,30 @@
           app:text_size="15sp"
           app:text_show="true"
           app:light_show="true"
-          app:progress="90"/>
+          app:progress_value="90"/>
+  </LinearLayout>
+
+  <!--组合-->
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:clipChildren="false"
+      android:clipToPadding="false">
+      <TextView
+          style="@style/text"
+          android:text="混合2"/>
+      <com.liys.view.LineProgressView
+          android:id="@+id/progressView6"
+          style="@style/base"
+          app:progress_size="30dp"
+          app:progress_color_background="@color/colorPrimaryDark"
+          app:progress_color="#FCD728"
+          app:radius="20dp"
+          app:progress_radius="20dp"
+          app:text_size="15sp"
+          app:text_show="true"
+          app:light_show="true"
+          app:progress_value="90"/>
   </LinearLayout>
 
   <SeekBar

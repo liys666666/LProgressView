@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- 公共属性 -->
-    <attr name="max_progress" format="integer"/>  //总数
-    <attr name="progress" format="integer"/>  //进度
+    <attr name="progress_max" format="integer"/>  //总数
+    <attr name="progress_value" format="integer"/>  //进度
 
-    <attr name="size_in" format="dimension"/>  //底部背景大小
-    <attr name="size_out" format="dimension"/>  //进度条 大小
-    <attr name="color_in" format="color"/> //底部背景颜色
-    <attr name="color_out" format="color"/> //进度条 颜色
+    <attr name="progress_size" format="dimension"/>  //进度条 大小
+    <attr name="progress_color" format="color"/> //进度条 颜色
+    <attr name="progress_color_background" format="color"/> //进度条背景颜色
 
-    <attr name="text" format="string"/>  //文字
     <attr name="text_size" format="dimension"/> //文字大小
     <attr name="text_color" format="color"/> //文字颜色
     <attr name="text_show" format="boolean"/> //是否显示文字
+    <attr name="text_decimal_num" format="integer"/>  //保留多少位小数
 
     <attr name="light_color" format="color"/> //发光颜色
     <attr name="light_size" format="dimension"/> //发光大小
@@ -23,21 +22,19 @@
     <attr name="stroke_show" format="boolean"/> //是否需要边框
 
     <declare-styleable name="BaseProgressView">
-        <attr name="max_progress"/>
-        <attr name="progress"/>
+        <attr name="progress_max"/>
+        <attr name="progress_value"/>
 
-        <attr name="size_in"/>
-        <attr name="size_out"/>
-        <attr name="color_in"/>
-        <attr name="color_out"/>
+        <attr name="progress_size"/>
+        <attr name="progress_color"/>
+        <attr name="progress_color_background"/>
 
-        <attr name="text"/>
         <attr name="text_size"/>
         <attr name="text_color"/>
         <attr name="text_show"/>
+        <attr name="text_decimal_num"/>
 
         <attr name="light_color"/>
-        <attr name="light_size"/>
         <attr name="light_show"/>
 
         <attr name="stroke_color"/>
@@ -55,21 +52,19 @@
         <attr name="right_bottom_radius" format="dimension"/>
         <attr name="progress_radius" format="dimension"/>
 
-        <attr name="max_progress"/>
-        <attr name="progress"/>
+        <attr name="progress_max"/>
+        <attr name="progress_value"/>
 
-        <attr name="size_in"/>
-        <attr name="size_out"/>
-        <attr name="color_in"/>
-        <attr name="color_out"/>
+        <attr name="progress_size"/>
+        <attr name="progress_color"/>
+        <attr name="progress_color_background"/>
 
-        <attr name="text"/>
         <attr name="text_size"/>
         <attr name="text_color"/>
         <attr name="text_show"/>
+        <attr name="text_decimal_num"/>
 
         <attr name="light_color"/>
-        <attr name="light_size"/>
         <attr name="light_show"/>
 
         <attr name="stroke_color"/>
