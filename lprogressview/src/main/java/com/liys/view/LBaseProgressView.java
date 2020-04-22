@@ -118,7 +118,7 @@ public abstract class LBaseProgressView extends View{
         lightShow = typedArray.getBoolean(R.styleable.BaseProgressView_light_show, false);
 
         strokeColor = typedArray.getColor(R.styleable.BaseProgressView_stroke_color, Color.WHITE);
-        strokeWidth = typedArray.getDimensionPixelOffset(R.styleable.BaseProgressView_stroke_width, dp2px(0.5f));
+        strokeWidth = typedArray.getDimensionPixelOffset(R.styleable.BaseProgressView_stroke_width, dp2px(1));
         strokeShow = typedArray.getBoolean(R.styleable.BaseProgressView_stroke_show, false);
 
         typedArray.recycle();

@@ -70,4 +70,25 @@
         <attr name="stroke_width"/>
         <attr name="stroke_show"/>
     </declare-styleable>
+
+    <declare-styleable name="LineCentreProgressView">
+        <attr name="progress_max"/>
+        <attr name="progress_value"/>
+
+        <attr name="progress_size"/>
+        <attr name="progress_color"/>
+        <attr name="progress_color_background"/>
+
+        <attr name="text_size"/>
+        <attr name="text_color"/>
+        <attr name="text_show"/>
+        <attr name="text_decimal_num"/>
+
+        <attr name="light_color"/>
+        <attr name="light_show"/>
+
+        <attr name="stroke_color"/>
+        <attr name="stroke_width"/>
+        <attr name="stroke_show"/>
+    </declare-styleable>
 </resources>
