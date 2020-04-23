@@ -32,6 +32,11 @@
     <attr name="box_width" format="dimension"/> //方框宽度
     <attr name="box_radius" format="dimension"/> //方框圆角
 
+    <!--圆弧进度条-->
+    <attr name="arc_start_angle" format="integer"/> //开始角度
+    <attr name="arc_draw_angle" format="integer"/> //需要绘制的角度
+
+
     <declare-styleable name="BaseProgressView">
         <attr name="progress_max"/>
         <attr name="progress_value"/>
@@ -53,6 +58,7 @@
         <attr name="stroke_show"/>
     </declare-styleable>
 
+<!-->>>>>>>>>>>>>>>>>>>>>>> 线性进度条 >>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
     <!-- 线性基类 -->
     <declare-styleable name="LineBaseProgressView">
         <attr name="progress_max"/>
@@ -82,7 +88,8 @@
         <attr name="progress_radius"/>
     </declare-styleable>
 
-    <!-- 线性进度条 -->
+
+<!-->>>>>>>>>>>>>>>>>>>>>>>LineProgressView>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
     <declare-styleable name="LineProgressView">
         <attr name="progress_max"/>
         <attr name="progress_value"/>
@@ -112,6 +119,7 @@
         <attr name="progress_radius"/>
     </declare-styleable>
 
+<!-->>>>>>>>>>>>>>>>>>>>>>>LineCentreProgressView>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
     <declare-styleable name="LineCentreProgressView">
         <attr name="progress_max"/>
         <attr name="progress_value"/>
@@ -135,7 +143,7 @@
         <attr name="box_radius"/> //方框--圆角
     </declare-styleable>
 
-
+<!-->>>>>>>>>>>>>>>>>>>>>>>LineBottomProgressView>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
     <declare-styleable name="LineBottomProgressView">
         <attr name="progress_max"/>
         <attr name="progress_value"/>
@@ -159,4 +167,26 @@
         <attr name="box_height"/> //方框--高度
         <attr name="box_radius"/> //方框--圆角
     </declare-styleable>
+
+<!-->>>>>>>>>>>>>>>>>>>>>>> 圆弧进度条 >>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
+    <declare-styleable name="ArcProgressView">
+        <attr name="progress_max"/>
+        <attr name="progress_value"/>
+
+        <attr name="progress_size"/>
+        <attr name="progress_color"/>
+        <attr name="progress_color_background"/>
+
+        <attr name="text_size"/>
+        <attr name="text_color"/>
+        <attr name="text_show"/>
+        <attr name="text_decimal_num"/>
+
+        <attr name="light_color"/>
+        <attr name="light_show"/>
+
+        <attr name="arc_start_angle"/> //开始角度
+        <attr name="arc_draw_angle"/> //需要绘制的角度
+    </declare-styleable>
+
 </resources>
