@@ -17,7 +17,7 @@ import android.util.AttributeSet;
  * @UpdateRemark: 更新说明
  * @Version: 1.0
  */
-public class LineCentreProgressView extends LBaseProgressView{
+public class LineCentreProgressView extends LineBaseProgressView{
 
     protected Paint boxPaint = new Paint();
     protected int boxWidth;
@@ -62,8 +62,8 @@ public class LineCentreProgressView extends LBaseProgressView{
 
         int top = (height-progressSize)/2;
         //进度条当前长度
-        canvas.drawRoundRect(new RectF(0, top, width, top+progressSize), progressSize/2, progressSize/2, progressBgPaint);
-        canvas.drawRoundRect(new RectF(0, top, outWidth+boxWidth/2, top+progressSize), progressSize/2, progressSize/2, progressPaint);
+        canvas.drawRoundRect(new RectF(0, top, width, top+progressSize), radius, radius, progressBgPaint);
+        canvas.drawRoundRect(new RectF(0, top, outWidth+boxWidth/2, top+progressSize), radius, radius, progressPaint);
 
         drawBox(canvas, outWidth);
         drawText(canvas, outWidth);

@@ -20,6 +20,18 @@
     <attr name="stroke_width" format="dimension"/> //边框大小
     <attr name="stroke_show" format="boolean"/> //是否需要边框
 
+
+    <!--line进度条特有-->
+    <attr name="radius" format="dimension"/>
+    <attr name="left_top_radius" format="dimension"/>
+    <attr name="left_bottom_radius" format="dimension"/>
+    <attr name="right_top_radius" format="dimension"/>
+    <attr name="right_bottom_radius" format="dimension"/>
+    <attr name="progress_radius" format="dimension"/>
+
+    <attr name="box_width" format="dimension"/> //方框宽度
+    <attr name="box_radius" format="dimension"/> //方框圆角
+
     <declare-styleable name="BaseProgressView">
         <attr name="progress_max"/>
         <attr name="progress_value"/>
@@ -41,16 +53,8 @@
         <attr name="stroke_show"/>
     </declare-styleable>
 
-    <!-- 线性进度条 -->
-    <declare-styleable name="LineProgressView">
-        <!--圆角半径-->
-        <attr name="radius" format="dimension"/>
-        <attr name="left_top_radius" format="dimension"/>
-        <attr name="left_bottom_radius" format="dimension"/>
-        <attr name="right_top_radius" format="dimension"/>
-        <attr name="right_bottom_radius" format="dimension"/>
-        <attr name="progress_radius" format="dimension"/>
-
+    <!-- 线性基类 -->
+    <declare-styleable name="LineBaseProgressView">
         <attr name="progress_max"/>
         <attr name="progress_value"/>
 
@@ -69,6 +73,43 @@
         <attr name="stroke_color"/>
         <attr name="stroke_width"/>
         <attr name="stroke_show"/>
+
+        <attr name="radius"/>
+        <attr name="left_top_radius"/>
+        <attr name="left_bottom_radius"/>
+        <attr name="right_top_radius"/>
+        <attr name="right_bottom_radius"/>
+        <attr name="progress_radius"/>
+    </declare-styleable>
+
+    <!-- 线性进度条 -->
+    <declare-styleable name="LineProgressView">
+        <attr name="progress_max"/>
+        <attr name="progress_value"/>
+
+        <attr name="progress_size"/>
+        <attr name="progress_color"/>
+        <attr name="progress_color_background"/>
+
+        <attr name="text_size"/>
+        <attr name="text_color"/>
+        <attr name="text_show"/>
+        <attr name="text_decimal_num"/>
+
+        <attr name="light_color"/>
+        <attr name="light_show"/>
+
+        <attr name="stroke_color"/>
+        <attr name="stroke_width"/>
+        <attr name="stroke_show"/>
+
+        <!--圆角半径-->
+        <attr name="radius"/>
+        <attr name="left_top_radius"/>
+        <attr name="left_bottom_radius"/>
+        <attr name="right_top_radius"/>
+        <attr name="right_bottom_radius"/>
+        <attr name="progress_radius"/>
     </declare-styleable>
 
     <declare-styleable name="LineCentreProgressView">
@@ -87,7 +128,35 @@
         <attr name="light_color"/>
         <attr name="light_show"/>
 
-        <attr name="box_width" format="dimension"/> //方框宽度
-        <attr name="box_radius" format="dimension"/> //方框圆角
+        <!--圆角半径-->
+        <attr name="radius"/>
+
+        <attr name="box_width"/> //方框--宽度
+        <attr name="box_radius"/> //方框--圆角
+    </declare-styleable>
+
+
+    <declare-styleable name="LineBottomProgressView">
+        <attr name="progress_max"/>
+        <attr name="progress_value"/>
+
+        <attr name="progress_size"/>
+        <attr name="progress_color"/>
+        <attr name="progress_color_background"/>
+
+        <attr name="text_size"/>
+        <attr name="text_color"/>
+        <attr name="text_show"/>
+        <attr name="text_decimal_num"/>
+
+        <attr name="light_color"/>
+        <attr name="light_show"/>
+
+        <!--圆角半径-->
+        <attr name="radius"/>
+
+        <attr name="box_width"/> //方框--宽度
+        <attr name="box_height"/> //方框--高度
+        <attr name="box_radius"/> //方框--圆角
     </declare-styleable>
 </resources>

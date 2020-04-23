@@ -21,6 +21,7 @@
 
         <activity android:name=".LineActivity"/>
         <activity android:name=".LineCentreActivity" />
+        <activity android:name=".LineBottomActivity" />
     </application>
 
 </manifest>

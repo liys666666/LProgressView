@@ -2,14 +2,9 @@ package com.liys.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.LinearGradient;
 import android.graphics.Path;
 import android.graphics.RectF;
-import android.graphics.Shader;
-import android.support.annotation.ArrayRes;
-import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
 
 /**
@@ -21,21 +16,12 @@ import android.util.AttributeSet;
  * @UpdateRemark: 更新说明
  * @Version: 1.0
  */
-public class LineProgressView extends LBaseProgressView {
+public class LineProgressView extends LineBaseProgressView {
     //画笔
     protected Path pathIn = new Path();
     protected Path pathOut = new Path();
     protected Path pathLight = new Path();
     protected Path pathStroke = new Path();
-    //圆角
-    protected float radius;
-    protected float leftTopRadius;
-    protected float leftBottomRadius;
-    protected float rightTopRadius;
-    protected float rightBottomRadius;
-    protected float progressRadius;
-
-    protected boolean isRadius = true; //true使用radius   false使用leftTopRadius...
 
     //文字偏移量(进度条--左边距离)
     protected int offTextX;
@@ -50,28 +36,8 @@ public class LineProgressView extends LBaseProgressView {
 
     public LineProgressView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initAttrs(context.obtainStyledAttributes(attrs, R.styleable.LineProgressView));
     }
 
-    /**
-     * 获取属性
-     * @param typedArray
-     */
-    private void initAttrs(TypedArray typedArray){
-        radius = typedArray.getDimension(R.styleable.LineProgressView_radius, -1);
-        leftTopRadius = typedArray.getDimension(R.styleable.LineProgressView_left_top_radius, 0);
-        leftBottomRadius = typedArray.getDimension(R.styleable.LineProgressView_left_bottom_radius, 0);
-        rightTopRadius = typedArray.getDimension(R.styleable.LineProgressView_right_top_radius, 0);
-        rightBottomRadius = typedArray.getDimension(R.styleable.LineProgressView_right_bottom_radius, 0);
-        progressRadius = typedArray.getDimension(R.styleable.LineProgressView_progress_radius, 0);
-
-        if(radius==-1){ //没有赋值，则自己处理
-            isRadius = false;
-        }
-        if(leftTopRadius==0 || leftBottomRadius==0 || rightTopRadius==0 || rightBottomRadius==0){
-            isRadius = true;
-        }
-    }
 
     @Override
     public void init() {
@@ -81,39 +47,6 @@ public class LineProgressView extends LBaseProgressView {
         }
     }
 
-
-    /**
-     * 设置渐变
-     * @param isHorizontal 是否水平
-     * @param isHorizontal 是否水平渐变  (水平：左到右  垂直：上到下)
-     * @param color 颜色数组
-     */
-    public void setOutGradient(final boolean isHorizontal, final @ColorInt int... color){
-        post(new Runnable() {
-            @Override
-            public void run() {
-                int[] colorResArr = new int[color.length];
-                for (int i = 0; i < color.length; i++) {
-                    colorResArr[i] = color[i];
-                }
-                LinearGradient gradient;
-                int topOut = (height- progressSize)/2;
-                if(isHorizontal){ //水平
-                    gradient =new LinearGradient(0, 0, width, 0, colorResArr, null, Shader.TileMode.CLAMP);  //参数一为渐变起
-                }else{
-                    gradient =new LinearGradient(0, topOut, 0, topOut+ progressSize, colorResArr, null, Shader.TileMode.CLAMP);  //参数一为渐变起
-                }
-                progressPaint.setShader(gradient);
-            }
-        });
-    }
-    public void setOutGradient(@ColorInt int... color){
-        setOutGradient(true, color);
-    }
-
-    public void setOutGradientArray(boolean isHorizontal, @ArrayRes int arrayRes){
-        setOutGradient(isHorizontal, getResources().getIntArray(arrayRes));
-    }
 
     @SuppressLint("DrawAllocation")
     @Override
@@ -186,62 +119,6 @@ public class LineProgressView extends LBaseProgressView {
         this.offTextX = offTextX;
     }
 
-    public float getRadius() {
-        return radius;
-    }
-
-    public void setRadius(float radius) {
-        this.radius = radius;
-        invalidate();
-    }
-
-    public float getLeftTopRadius() {
-        return leftTopRadius;
-    }
-
-    public void setLeftTopRadius(float leftTopRadius) {
-        this.leftTopRadius = leftTopRadius;
-    }
-
-    public float getLeftBottomRadius() {
-        return leftBottomRadius;
-    }
-
-    public void setLeftBottomRadius(float leftBottomRadius) {
-        this.leftBottomRadius = leftBottomRadius;
-    }
-
-    public float getRightTopRadius() {
-        return rightTopRadius;
-    }
-
-    public void setRightTopRadius(float rightTopRadius) {
-        this.rightTopRadius = rightTopRadius;
-    }
-
-    public float getRightBottomRadius() {
-        return rightBottomRadius;
-    }
-
-    public void setRightBottomRadius(float rightBottomRadius) {
-        this.rightBottomRadius = rightBottomRadius;
-    }
-
-    public float getProgressRadius() {
-        return progressRadius;
-    }
-
-    public void setProgressRadius(float progressRadius) {
-        this.progressRadius = progressRadius;
-    }
-
-    public boolean isRadius() {
-        return isRadius;
-    }
-
-    public void setRadius(boolean radius) {
-        isRadius = radius;
-    }
 }
 
 

@@ -90,11 +90,13 @@ public abstract class LBaseProgressView extends View{
                     progressPaint.setMaskFilter(lightMaskFilter);
                     setLayerType(LAYER_TYPE_SOFTWARE, null); //禁用硬件加速
                 }
+                beforeInit();
                 init();
             }
         });
     }
 
+    public void beforeInit(){}
     public abstract void init();
 
     @SuppressLint("CustomViewStyleable")
@@ -167,13 +169,24 @@ public abstract class LBaseProgressView extends View{
     }
 
     protected int getBaseline(Paint paint){
+//        Paint.FontMetricsInt fontMetrics = paint.getFontMetricsInt();
+//        // 获取文字的高
+//        int fontTotalHeight = fontMetrics.bottom - fontMetrics.top;
+//        // 计算基线到中心点的距离
+//        int offY = fontTotalHeight / 2 - fontMetrics.bottom;
+//        // 计算基线位置
+//        int baseline = (getMeasuredHeight() + fontTotalHeight) / 2 - offY;
+        return getBaseline(paint, getMeasuredHeight());
+    }
+
+    protected int getBaseline(Paint paint, int totalHeight){
         Paint.FontMetricsInt fontMetrics = paint.getFontMetricsInt();
         // 获取文字的高
         int fontTotalHeight = fontMetrics.bottom - fontMetrics.top;
         // 计算基线到中心点的距离
         int offY = fontTotalHeight / 2 - fontMetrics.bottom;
         // 计算基线位置
-        int baseline = (getMeasuredHeight() + fontTotalHeight) / 2 - offY;
+        int baseline = (totalHeight + fontTotalHeight) / 2 - offY;
         return baseline;
     }
 
