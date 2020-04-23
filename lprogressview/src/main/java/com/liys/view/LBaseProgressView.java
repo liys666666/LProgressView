@@ -201,6 +201,9 @@ public abstract class LBaseProgressView extends View{
      * @return
      */
     protected String keepDecimals(double value){
+        if(textDecimalNum==0){
+            return (int)value + "";
+        }
         String format = "";
         for (int i = 0; i < textDecimalNum; i++) {
             if(i==0){

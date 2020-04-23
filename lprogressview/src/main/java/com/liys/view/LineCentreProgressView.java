@@ -2,8 +2,8 @@ package com.liys.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
@@ -21,6 +21,7 @@ public class LineCentreProgressView extends LBaseProgressView{
 
     protected Paint boxPaint = new Paint();
     protected int boxWidth;
+    protected int boxRadius;
 
     public LineCentreProgressView(Context context) {
         this(context, null);
@@ -32,13 +33,22 @@ public class LineCentreProgressView extends LBaseProgressView{
 
     public LineCentreProgressView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.LineCentreProgressView);
+        boxWidth = typedArray.getDimensionPixelOffset(R.styleable.LineCentreProgressView_box_width, -1);
+        boxRadius = typedArray.getDimensionPixelOffset(R.styleable.LineCentreProgressView_box_radius, -1);
     }
 
     @Override
     public void init() {
         boxPaint.setAntiAlias(true);
         boxPaint.setColor(progressPaint.getColor());
-        boxWidth = height*3/2;
+        if(boxWidth==-1){
+            boxWidth = height*3/2;
+        }
+        if(boxRadius==-1){
+            boxRadius = height/2;
+        }
     }
 
     @SuppressLint("DrawAllocation")
@@ -65,10 +75,36 @@ public class LineCentreProgressView extends LBaseProgressView{
      */
     public void drawBox(Canvas canvas, int left){
         RectF rectF = new RectF(left, 0, left+boxWidth, height); // 设置个新的长方形
-        canvas.drawRoundRect(rectF, height/2, height/2, boxPaint); //第二个参数是x半径，第三个参数是y半径
+        canvas.drawRoundRect(rectF, boxRadius, boxRadius, boxPaint); //第二个参数是x半径，第三个参数是y半径
     }
 
     public void drawText(Canvas canvas, int left){
         canvas.drawText(text, left+boxWidth/2-getTextRect(text).width()/2, getBaseline(textPaint), textPaint);
+    }
+
+    public Paint getBoxPaint() {
+        return boxPaint;
+    }
+
+    public void setBoxPaint(Paint boxPaint) {
+        this.boxPaint = boxPaint;
+    }
+
+    public int getBoxWidth() {
+        return boxWidth;
+    }
+
+    public void setBoxWidth(int boxWidth) {
+        this.boxWidth = boxWidth;
+        invalidate();
+    }
+
+    public int getBoxRadius() {
+        return boxRadius;
+    }
+
+    public void setBoxRadius(int boxRadius) {
+        this.boxRadius = boxRadius;
+        invalidate();
     }
 }

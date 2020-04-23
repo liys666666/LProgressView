@@ -87,8 +87,7 @@
         <attr name="light_color"/>
         <attr name="light_show"/>
 
-        <attr name="stroke_color"/>
-        <attr name="stroke_width"/>
-        <attr name="stroke_show"/>
+        <attr name="box_width" format="dimension"/> //方框宽度
+        <attr name="box_radius" format="dimension"/> //方框圆角
     </declare-styleable>
 </resources>
