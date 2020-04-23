@@ -75,21 +75,21 @@ public abstract class LineBaseProgressView extends LBaseProgressView {
 
     /**
      * 设置渐变
-     * @param isHorizontal 是否水平
-     * @param isHorizontal 是否水平渐变  (水平：左到右  垂直：上到下)
-     * @param color 颜色数组
+     * @param isProDirection 是否水平渐变  (水平：左到右  垂直：上到下)
+     * @param colors 颜色数组
      */
-    public void setOutGradient(final boolean isHorizontal, final @ColorInt int... color){
+    @Override
+    public void setOutGradient(final boolean isProDirection, final @ColorInt int... colors){
         post(new Runnable() {
             @Override
             public void run() {
-                int[] colorResArr = new int[color.length];
-                for (int i = 0; i < color.length; i++) {
-                    colorResArr[i] = color[i];
+                int[] colorResArr = new int[colors.length];
+                for (int i = 0; i < colors.length; i++) {
+                    colorResArr[i] = colors[i];
                 }
                 LinearGradient gradient;
                 int topOut = (height- progressSize)/2;
-                if(isHorizontal){ //水平
+                if(isProDirection){ //水平
                     gradient =new LinearGradient(0, 0, width, 0, colorResArr, null, Shader.TileMode.CLAMP);  //参数一为渐变起
                 }else{
                     gradient =new LinearGradient(0, topOut, 0, topOut+ progressSize, colorResArr, null, Shader.TileMode.CLAMP);  //参数一为渐变起
@@ -97,9 +97,6 @@ public abstract class LineBaseProgressView extends LBaseProgressView {
                 progressPaint.setShader(gradient);
             }
         });
-    }
-    public void setOutGradient(@ColorInt int... color){
-        setOutGradient(true, color);
     }
 
     public void setOutGradientArray(boolean isHorizontal, @ArrayRes int arrayRes){

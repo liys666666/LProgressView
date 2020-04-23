@@ -7,6 +7,7 @@ import android.graphics.BlurMaskFilter;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
@@ -163,6 +164,16 @@ public abstract class LBaseProgressView extends View{
             progressPaint.setMaskFilter(progressMaskFilter);
             setLayerType(LAYER_TYPE_SOFTWARE, null); //禁用硬件加速
         }
+    }
+
+    /**
+     * 设置渐变
+     * @param isProDirection 是否顺着进度条前进方向 渐变
+     * @param colors 颜色数组
+     */
+    public void setOutGradient(boolean isProDirection, @ColorInt int... colors){}
+    public void setOutGradient(@ColorInt int... colors){
+        setOutGradient(true, colors);
     }
 
     /**

@@ -1,6 +1,7 @@
 package com.liys.progressview;
 
 import android.animation.ValueAnimator;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -50,6 +51,8 @@ public class ArcActivity extends AppCompatActivity implements View.OnClickListen
 
             }
         });
+
+        arcProView.setOutGradient(Color.RED, Color.YELLOW, Color.GRAY, Color.RED);
     }
 
     @Override

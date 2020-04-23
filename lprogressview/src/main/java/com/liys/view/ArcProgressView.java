@@ -5,8 +5,9 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.RectF;
+import android.graphics.SweepGradient;
+import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
 
 /**
@@ -37,7 +38,7 @@ public class ArcProgressView extends LBaseProgressView{
         super(context, attrs, defStyleAttr);
 
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ArcProgressView);
-        startAngle = typedArray.getInteger(R.styleable.ArcProgressView_arc_start_angle, -90);
+        startAngle = typedArray.getInteger(R.styleable.ArcProgressView_arc_start_angle, 0);
         drawAngle = typedArray.getInteger(R.styleable.ArcProgressView_arc_draw_angle, 360);
 
     }
@@ -77,6 +78,21 @@ public class ArcProgressView extends LBaseProgressView{
         //3. 确定宽高(保持宽高一致)
         width = height = (width > height ? height : width);
         setMeasuredDimension(width, height);
+    }
+
+    @Override
+    public void setOutGradient(final boolean isProDirection, @ColorInt final int... colors){
+        post(new Runnable() {
+            @Override
+            public void run() {
+                int[] colorResArr = new int[colors.length];
+                for (int i = 0; i < colors.length; i++) {
+                    colorResArr[i] = colors[i];
+                }
+                SweepGradient gradient = new SweepGradient(width/2, height/2, colorResArr, null);
+                progressPaint.setShader(gradient);
+            }
+        });
     }
 
 
