@@ -11,7 +11,7 @@ import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
 
 /**
- * @Description:
+ * @Description: 圆弧进度条
  * @Author: liys
  * @CreateDate: 2020/4/23 13:46
  * @UpdateUser: 更新者
@@ -19,12 +19,12 @@ import android.util.AttributeSet;
  * @UpdateRemark: 更新说明
  * @Version: 1.0
  */
-public class ArcProView extends BaseProView {
+public class ArcProView extends SquareProView {
 
     protected int startAngle = 0; //开始角度
     protected int drawAngle = 360; //需要绘制的角度
     protected int currentAngle = 0; //当前角度
-    protected int defaultWidth = 100; //默认宽高，单位sp
+
 
     public ArcProView(Context context) {
         this(context, null);
@@ -59,25 +59,6 @@ public class ArcProView extends BaseProView {
         progressBgPaint.setStrokeWidth(progressSize); //大小
         progressBgPaint.setStrokeCap(Paint.Cap.ROUND); // 结束位置圆角
         progressBgPaint.setStyle(Paint.Style.STROKE); //空心样式
-    }
-
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        //取默认值
-        width = sp2px(defaultWidth);
-        height = sp2px(defaultWidth);
-        //1. 获取宽
-        if (MeasureSpec.getMode(widthMeasureSpec) == MeasureSpec.EXACTLY) { //具体值
-            width = MeasureSpec.getSize(widthMeasureSpec);
-        }
-        //2.获取高
-        if (MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.EXACTLY) { //具体值
-            height = MeasureSpec.getSize(heightMeasureSpec);
-        }
-        //3. 确定宽高(保持宽高一致)
-        width = height = (width > height ? height : width);
-        setMeasuredDimension(width, height);
     }
 
     @Override
@@ -117,20 +98,16 @@ public class ArcProView extends BaseProView {
     }
 
     //内圆弧
-    private void drawInCircle(Canvas canvas, RectF rectF) {
+    protected void drawInCircle(Canvas canvas, RectF rectF) {
         canvas.drawArc(rectF, startAngle, drawAngle, false, progressBgPaint);
     }
 
     //外圆弧
-    private void drawOutCircle(Canvas canvas, RectF rectF) {
+    protected void drawOutCircle(Canvas canvas, RectF rectF) {
         if (currentAngle > drawAngle) {
             currentAngle = drawAngle;
         }
         canvas.drawArc(rectF, startAngle, currentAngle, false, progressPaint);
-    }
-
-    private void drawText(Canvas canvas) {
-        canvas.drawText(text, width/2 - getTextRect(text).width()/2, getBaseline(textPaint), textPaint);
     }
 
 //>>>>>>>>>>>>>>>>>>>>>>对应 set get方法>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

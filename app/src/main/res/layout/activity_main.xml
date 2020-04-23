@@ -34,5 +34,11 @@
             android:layout_height="wrap_content"
             android:textAllCaps="false"
             android:text="arc_btn"/>
+        <Button
+            android:id="@+id/water_wave_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="water_wave_btn"/>
     </LinearLayout>
 </ScrollView>

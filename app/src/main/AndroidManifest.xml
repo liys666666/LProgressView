@@ -23,6 +23,7 @@
         <activity android:name=".LineCentreActivity" />
         <activity android:name=".LineBottomActivity" />
         <activity android:name=".ArcActivity" />
+        <activity android:name=".WaterWaveActivity" />
     </application>
 
 </manifest>

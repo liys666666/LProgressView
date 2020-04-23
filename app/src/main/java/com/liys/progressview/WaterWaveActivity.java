@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.SeekBar;
 
-import com.liys.view.ArcProView;
+import com.liys.view.WaterWaveProView;
 
 /**
  * @Description:
@@ -21,15 +21,15 @@ import com.liys.view.ArcProView;
  */
 public class WaterWaveActivity extends AppCompatActivity implements View.OnClickListener {
 
-    ArcProView arcProView;
+    WaterWaveProView waterProView;
     SeekBar seekBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_arc);
+        setContentView(R.layout.activity_water_wave);
 
-        arcProView = findViewById(R.id.arc_view);
+        waterProView = findViewById(R.id.water_view);
         seekBar = findViewById(R.id.seekBar);
         findViewById(R.id.start_btn).setOnClickListener(this);
 
@@ -38,7 +38,7 @@ public class WaterWaveActivity extends AppCompatActivity implements View.OnClick
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                arcProView.setDrawAngle(progress);
+//                waterProView.setDrawAngle(progress);
             }
 
             @Override
@@ -52,20 +52,20 @@ public class WaterWaveActivity extends AppCompatActivity implements View.OnClick
             }
         });
 
-        arcProView.setOutGradient(Color.RED, Color.YELLOW, Color.GRAY, Color.RED);
+        waterProView.setOutGradient(Color.RED, Color.YELLOW, Color.GRAY, Color.RED);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.start_btn:
-                ValueAnimator animator = ValueAnimator.ofFloat(0f, 100f);
+                ValueAnimator animator = ValueAnimator.ofFloat(0f, 50f);
                 animator.setDuration(5000);
                 animator.setInterpolator(new AccelerateDecelerateInterpolator());
                 animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public void onAnimationUpdate(ValueAnimator animation) {
-                        arcProView.setProgress((float) animation.getAnimatedValue());
+                        waterProView.setProgress((float) animation.getAnimatedValue());
                     }
                 });
                 animator.start();

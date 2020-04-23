@@ -189,4 +189,11 @@
         <attr name="arc_draw_angle"/> //需要绘制的角度
     </declare-styleable>
 
+
+    <!-- 水波 进度条 -->
+    <declare-styleable name="WaterWaveProView">
+        <attr name="water_wave_width" format="dimension"/> // 水波长
+        <attr name="water_wave_height" format="dimension"/> //水波高度
+        <attr name="water_wave_speed" format="integer"/> //水波--速度
+    </declare-styleable>
 </resources>
