@@ -17,26 +17,26 @@ import android.util.AttributeSet;
  * @UpdateRemark: 更新说明
  * @Version: 1.0
  */
-public class LineCentreProgressView extends LineBaseProgressView{
+public class LineCentreProView extends LineBaseProView {
 
     protected Paint boxPaint = new Paint();
     protected int boxWidth;
     protected int boxRadius;
 
-    public LineCentreProgressView(Context context) {
+    public LineCentreProView(Context context) {
         this(context, null);
     }
 
-    public LineCentreProgressView(Context context, AttributeSet attrs) {
+    public LineCentreProView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public LineCentreProgressView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public LineCentreProView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.LineCentreProgressView);
-        boxWidth = typedArray.getDimensionPixelOffset(R.styleable.LineCentreProgressView_box_width, -1);
-        boxRadius = typedArray.getDimensionPixelOffset(R.styleable.LineCentreProgressView_box_radius, -1);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.LineCentreProView);
+        boxWidth = typedArray.getDimensionPixelOffset(R.styleable.LineCentreProView_box_width, -1);
+        boxRadius = typedArray.getDimensionPixelOffset(R.styleable.LineCentreProView_box_radius, -1);
     }
 
     @Override

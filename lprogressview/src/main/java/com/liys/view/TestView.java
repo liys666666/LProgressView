@@ -18,7 +18,7 @@ import android.util.AttributeSet;
  * @UpdateRemark: 更新说明
  * @Version: 1.0
  */
-public class TestView extends LBaseProgressView {
+public class TestView extends BaseProView {
     protected Path pathOut = new Path();
 
     Paint paint = new Paint();

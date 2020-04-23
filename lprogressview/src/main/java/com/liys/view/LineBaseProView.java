@@ -1,12 +1,8 @@
 package com.liys.view;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Canvas;
 import android.graphics.LinearGradient;
-import android.graphics.Path;
-import android.graphics.RectF;
 import android.graphics.Shader;
 import android.support.annotation.ArrayRes;
 import android.support.annotation.ColorInt;
@@ -21,7 +17,7 @@ import android.util.AttributeSet;
  * @UpdateRemark: 更新说明
  * @Version: 1.0
  */
-public abstract class LineBaseProgressView extends LBaseProgressView {
+public abstract class LineBaseProView extends BaseProView {
     //圆角
     protected float radius;
     protected float leftTopRadius;
@@ -32,17 +28,17 @@ public abstract class LineBaseProgressView extends LBaseProgressView {
 
     protected boolean isRadius = true; //true使用radius   false使用leftTopRadius...
 
-    public LineBaseProgressView(Context context) {
+    public LineBaseProView(Context context) {
         this(context, null);
     }
 
-    public LineBaseProgressView(Context context, AttributeSet attrs) {
+    public LineBaseProView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public LineBaseProgressView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public LineBaseProView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initAttrs(context.obtainStyledAttributes(attrs, R.styleable.LineBaseProgressView));
+        initAttrs(context.obtainStyledAttributes(attrs, R.styleable.LineBaseProView));
     }
 
     /**
@@ -50,12 +46,12 @@ public abstract class LineBaseProgressView extends LBaseProgressView {
      * @param typedArray
      */
     private void initAttrs(TypedArray typedArray){
-        radius = typedArray.getDimension(R.styleable.LineBaseProgressView_radius, -1);
-        leftTopRadius = typedArray.getDimension(R.styleable.LineBaseProgressView_left_top_radius, 0);
-        leftBottomRadius = typedArray.getDimension(R.styleable.LineBaseProgressView_left_bottom_radius, 0);
-        rightTopRadius = typedArray.getDimension(R.styleable.LineBaseProgressView_right_top_radius, 0);
-        rightBottomRadius = typedArray.getDimension(R.styleable.LineBaseProgressView_right_bottom_radius, 0);
-        progressRadius = typedArray.getDimension(R.styleable.LineBaseProgressView_progress_radius, 0);
+        radius = typedArray.getDimension(R.styleable.LineBaseProView_radius, -1);
+        leftTopRadius = typedArray.getDimension(R.styleable.LineBaseProView_left_top_radius, 0);
+        leftBottomRadius = typedArray.getDimension(R.styleable.LineBaseProView_left_bottom_radius, 0);
+        rightTopRadius = typedArray.getDimension(R.styleable.LineBaseProView_right_top_radius, 0);
+        rightBottomRadius = typedArray.getDimension(R.styleable.LineBaseProView_right_bottom_radius, 0);
+        progressRadius = typedArray.getDimension(R.styleable.LineBaseProView_progress_radius, 0);
 
         if(radius==-1){ //没有赋值，则自己处理
             isRadius = false;

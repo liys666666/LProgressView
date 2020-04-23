@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:textAllCaps="false"
             android:text="start"/>
-        <com.liys.view.LineCentreProgressView
+        <com.liys.view.LineCentreProView
             android:id="@+id/center_pro_view"
             android:layout_width="200dp"
             android:layout_height="20dp"

@@ -10,13 +10,13 @@ import android.util.AttributeSet;
 /**
  * @Description:
  * @Author: liys
- * @CreateDate: 2020/4/13 17:57
+ * @CreateDate: 2020/4/23 16:24
  * @UpdateUser: 更新者
- * @UpdateDate: 2020/4/13 17:57
+ * @UpdateDate: 2020/4/23 16:24
  * @UpdateRemark: 更新说明
  * @Version: 1.0
  */
-public class LineProgressView extends LineBaseProgressView {
+public class LineProView extends LineBaseProView {
     //画笔
     protected Path pathIn = new Path();
     protected Path pathOut = new Path();
@@ -26,15 +26,15 @@ public class LineProgressView extends LineBaseProgressView {
     //文字偏移量(进度条--左边距离)
     protected int offTextX;
 
-    public LineProgressView(Context context) {
+    public LineProView(Context context) {
         this(context, null);
     }
 
-    public LineProgressView(Context context, AttributeSet attrs) {
+    public LineProView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public LineProgressView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public LineProView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

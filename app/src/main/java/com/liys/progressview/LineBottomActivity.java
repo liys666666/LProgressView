@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.SeekBar;
 
-import com.liys.view.LineBottomProgressView;
+import com.liys.view.LineBottomProView;
 
 /**
  * @Description:
@@ -20,7 +20,7 @@ import com.liys.view.LineBottomProgressView;
  */
 public class LineBottomActivity extends AppCompatActivity implements View.OnClickListener {
 
-    LineBottomProgressView bottomProView;
+    LineBottomProView bottomProView;
     SeekBar seekBar;
 
     @Override

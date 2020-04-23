@@ -19,27 +19,27 @@ import android.util.AttributeSet;
  * @UpdateRemark: 更新说明
  * @Version: 1.0
  */
-public class ArcProgressView extends LBaseProgressView{
+public class ArcProView extends BaseProView {
 
     protected int startAngle = 0; //开始角度
     protected int drawAngle = 360; //需要绘制的角度
     protected int currentAngle = 0; //当前角度
     protected int defaultWidth = 100; //默认宽高，单位sp
 
-    public ArcProgressView(Context context) {
+    public ArcProView(Context context) {
         this(context, null);
     }
 
-    public ArcProgressView(Context context, AttributeSet attrs) {
+    public ArcProView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public ArcProgressView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ArcProView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ArcProgressView);
-        startAngle = typedArray.getInteger(R.styleable.ArcProgressView_arc_start_angle, 0);
-        drawAngle = typedArray.getInteger(R.styleable.ArcProgressView_arc_draw_angle, 360);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ArcProView);
+        startAngle = typedArray.getInteger(R.styleable.ArcProView_arc_start_angle, 0);
+        drawAngle = typedArray.getInteger(R.styleable.ArcProView_arc_draw_angle, 360);
 
     }
 

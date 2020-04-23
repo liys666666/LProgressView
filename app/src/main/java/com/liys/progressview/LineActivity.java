@@ -5,7 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.SeekBar;
 
-import com.liys.view.LineProgressView;
+import com.liys.view.LineBaseProView;
+import com.liys.view.LineProView;
 
 /**
  * @Description:
@@ -18,11 +19,11 @@ import com.liys.view.LineProgressView;
  */
 public class LineActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener{
 
-    LineProgressView progressView;
-    LineProgressView progressView2;
-    LineProgressView progressView5;
-    LineProgressView progressView6;
-    LineProgressView progressView7;
+    LineProView progressView;
+    LineProView progressView2;
+    LineProView progressView5;
+    LineProView progressView6;
+    LineProView progressView7;
     SeekBar seekBar;
     SeekBar seekBar2;
 

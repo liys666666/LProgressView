@@ -60,7 +60,7 @@
 
 <!-->>>>>>>>>>>>>>>>>>>>>>> 线性进度条 >>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
     <!-- 线性基类 -->
-    <declare-styleable name="LineBaseProgressView">
+    <declare-styleable name="LineBaseProView">
         <attr name="progress_max"/>
         <attr name="progress_value"/>
 
@@ -90,7 +90,7 @@
 
 
 <!-->>>>>>>>>>>>>>>>>>>>>>>LineProgressView>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
-    <declare-styleable name="LineProgressView">
+    <declare-styleable name="LineProView">
         <attr name="progress_max"/>
         <attr name="progress_value"/>
 
@@ -120,7 +120,7 @@
     </declare-styleable>
 
 <!-->>>>>>>>>>>>>>>>>>>>>>>LineCentreProgressView>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
-    <declare-styleable name="LineCentreProgressView">
+    <declare-styleable name="LineCentreProView">
         <attr name="progress_max"/>
         <attr name="progress_value"/>
 
@@ -144,7 +144,7 @@
     </declare-styleable>
 
 <!-->>>>>>>>>>>>>>>>>>>>>>>LineBottomProgressView>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
-    <declare-styleable name="LineBottomProgressView">
+    <declare-styleable name="LineBottomProView">
         <attr name="progress_max"/>
         <attr name="progress_value"/>
 
@@ -169,7 +169,7 @@
     </declare-styleable>
 
 <!-->>>>>>>>>>>>>>>>>>>>>>> 圆弧进度条 >>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
-    <declare-styleable name="ArcProgressView">
+    <declare-styleable name="ArcProView">
         <attr name="progress_max"/>
         <attr name="progress_value"/>
 

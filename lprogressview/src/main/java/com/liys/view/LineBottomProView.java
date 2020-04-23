@@ -18,28 +18,28 @@ import android.util.AttributeSet;
  * @UpdateRemark: 更新说明
  * @Version: 1.0
  */
-public class LineBottomProgressView extends LineBaseProgressView{
+public class LineBottomProView extends LineBaseProView {
 
     protected Paint boxPaint = new Paint();
     protected int boxWidth;
     protected int boxHeight;
     protected int boxRadius;
 
-    public LineBottomProgressView(Context context) {
+    public LineBottomProView(Context context) {
         this(context, null);
     }
 
-    public LineBottomProgressView(Context context, AttributeSet attrs) {
+    public LineBottomProView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public LineBottomProgressView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public LineBottomProView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.LineBottomProgressView);
-        boxWidth = typedArray.getDimensionPixelOffset(R.styleable.LineBottomProgressView_box_width, -1);
-        boxHeight = typedArray.getDimensionPixelOffset(R.styleable.LineBottomProgressView_box_height, -1);
-        boxRadius = typedArray.getDimensionPixelOffset(R.styleable.LineBottomProgressView_box_radius, -1);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.LineBottomProView);
+        boxWidth = typedArray.getDimensionPixelOffset(R.styleable.LineBottomProView_box_width, -1);
+        boxHeight = typedArray.getDimensionPixelOffset(R.styleable.LineBottomProView_box_height, -1);
+        boxRadius = typedArray.getDimensionPixelOffset(R.styleable.LineBottomProView_box_radius, -1);
     }
 
     @Override

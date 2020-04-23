@@ -1,13 +1,14 @@
 package com.liys.progressview;
 
 import android.animation.ValueAnimator;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.SeekBar;
 
-import com.liys.view.LineCentreProView;
+import com.liys.view.ArcProView;
 
 /**
  * @Description:
@@ -18,26 +19,26 @@ import com.liys.view.LineCentreProView;
  * @UpdateRemark: 更新说明
  * @Version: 1.0
  */
-public class LineCentreActivity extends AppCompatActivity implements View.OnClickListener {
+public class WaterWaveActivity extends AppCompatActivity implements View.OnClickListener {
 
-    LineCentreProView centerProView;
+    ArcProView arcProView;
     SeekBar seekBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_line_centre);
+        setContentView(R.layout.activity_arc);
 
-        centerProView = findViewById(R.id.center_pro_view);
+        arcProView = findViewById(R.id.arc_view);
         seekBar = findViewById(R.id.seekBar);
         findViewById(R.id.start_btn).setOnClickListener(this);
 
-        seekBar.setMax(centerProView.dp2px(10));
+        seekBar.setMax(360);
         seekBar.setProgress(seekBar.getMax());
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                centerProView.setBoxRadius(progress);
+                arcProView.setDrawAngle(progress);
             }
 
             @Override
@@ -50,19 +51,21 @@ public class LineCentreActivity extends AppCompatActivity implements View.OnClic
 
             }
         });
+
+        arcProView.setOutGradient(Color.RED, Color.YELLOW, Color.GRAY, Color.RED);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.start_btn:
-                ValueAnimator animator = ValueAnimator.ofFloat(0f, 80f);
+                ValueAnimator animator = ValueAnimator.ofFloat(0f, 100f);
                 animator.setDuration(5000);
                 animator.setInterpolator(new AccelerateDecelerateInterpolator());
                 animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public void onAnimationUpdate(ValueAnimator animation) {
-                        centerProView.setProgress((float) animation.getAnimatedValue());
+                        arcProView.setProgress((float) animation.getAnimatedValue());
                     }
                 });
                 animator.start();

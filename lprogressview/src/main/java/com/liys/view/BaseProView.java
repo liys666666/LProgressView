@@ -23,7 +23,7 @@ import java.text.DecimalFormat;
  * @UpdateRemark: 更新说明
  * @Version: 1.0
  */
-public abstract class LBaseProgressView extends View{
+public abstract class BaseProView extends View{
 
     protected Context context;
 
@@ -63,15 +63,15 @@ public abstract class LBaseProgressView extends View{
 
     protected int blankSpace; //空白距离/发光和大小
 
-    public LBaseProgressView(Context context) {
+    public BaseProView(Context context) {
         this(context, null);
     }
 
-    public LBaseProgressView(Context context, AttributeSet attrs) {
+    public BaseProView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public LBaseProgressView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public BaseProView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.context = context;
         initBaseAttrs(attrs);

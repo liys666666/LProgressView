@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.SeekBar;
 
-import com.liys.view.ArcProgressView;
+import com.liys.view.ArcProView;
 
 /**
  * @Description:
@@ -21,7 +21,7 @@ import com.liys.view.ArcProgressView;
  */
 public class ArcActivity extends AppCompatActivity implements View.OnClickListener {
 
-    ArcProgressView arcProView;
+    ArcProView arcProView;
     SeekBar seekBar;
 
     @Override

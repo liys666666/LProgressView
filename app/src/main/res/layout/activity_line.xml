@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <com.liys.view.LineCentreProgressView
+        <com.liys.view.LineCentreProView
             android:layout_width="match_parent"
             android:layout_height="20dp"
             android:layout_marginTop="10dp"
@@ -25,7 +25,7 @@
             <TextView
                 style="@style/text"
                 android:text="普通"/>
-            <com.liys.view.LineProgressView
+            <com.liys.view.LineProView
                 style="@style/base"
                 app:progress_radius="20dp"
                 app:progress_value="50"/>
@@ -38,7 +38,7 @@
             <TextView
                 style="@style/text"
                 android:text="渐变"/>
-            <com.liys.view.LineProgressView
+            <com.liys.view.LineProView
                 android:id="@+id/progressView2"
                 style="@style/base"
                 app:radius="20dp"
@@ -52,7 +52,7 @@
             <TextView
                 style="@style/text"
                 android:text="发光"/>
-            <com.liys.view.LineProgressView
+            <com.liys.view.LineProView
                 android:id="@+id/progressView"
                 style="@style/base"
                 app:progress_size="30dp"
@@ -72,7 +72,7 @@
             <TextView
                 style="@style/text"
                 android:text="文字边框"/>
-            <com.liys.view.LineProgressView
+            <com.liys.view.LineProView
                 style="@style/base"
                 app:progress_color_background="@color/colorPrimaryDark"
                 app:progress_color="#FCD728"
@@ -96,7 +96,7 @@
             <TextView
                 style="@style/text"
                 android:text="混合1"/>
-            <com.liys.view.LineProgressView
+            <com.liys.view.LineProView
                 android:id="@+id/progressView5"
                 style="@style/base"
                 app:progress_size="30dp"
@@ -121,7 +121,7 @@
             <TextView
                 style="@style/text"
                 android:text="混合2"/>
-            <com.liys.view.LineProgressView
+            <com.liys.view.LineProView
                 android:id="@+id/progressView6"
                 style="@style/base"
                 app:progress_size="30dp"
@@ -135,7 +135,7 @@
                 app:progress_value="90"/>
         </LinearLayout>
 
-        <com.liys.view.LineProgressView
+        <com.liys.view.LineProView
             android:id="@+id/progressView7"
             style="@style/base"
             android:layout_width="200dp"
