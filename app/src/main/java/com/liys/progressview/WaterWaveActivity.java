@@ -92,4 +92,10 @@ public class WaterWaveActivity extends AppCompatActivity implements View.OnClick
     public void onStopTrackingTouch(SeekBar seekBar) {
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        waterProView.replace();
+    }
 }
