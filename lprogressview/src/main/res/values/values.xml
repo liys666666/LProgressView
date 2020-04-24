@@ -22,14 +22,15 @@
 
 
     <!--line进度条特有-->
-    <attr name="radius" format="dimension"/>
+    <attr name="radius" format="dimension"/> //圆角
     <attr name="left_top_radius" format="dimension"/>
     <attr name="left_bottom_radius" format="dimension"/>
     <attr name="right_top_radius" format="dimension"/>
     <attr name="right_bottom_radius" format="dimension"/>
-    <attr name="progress_radius" format="dimension"/>
+    <attr name="progress_radius" format="dimension"/> //进度条 前进方向圆角
 
     <attr name="box_width" format="dimension"/> //方框宽度
+    <attr name="box_height" format="dimension"/> //方框高度
     <attr name="box_radius" format="dimension"/> //方框圆角
 
     <!--圆弧进度条-->

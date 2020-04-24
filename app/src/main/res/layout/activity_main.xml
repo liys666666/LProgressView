@@ -50,8 +50,7 @@
         <!--  -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_height="wrap_content">
             <TextView
                 style="@style/text"
                 android:text="LineProView: "/>
@@ -67,8 +66,7 @@
                 app:stroke_show="true"
                 app:text_size="15sp"
                 app:text_show="true"
-                app:light_show="true"
-                app:progress_value="90"/>
+                app:light_show="true"/>
         </LinearLayout>
 
 
@@ -127,7 +125,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="200dp">
             <TextView
                 style="@style/text"
                 android:text="WaterWaveProView: "/>
