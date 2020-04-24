@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="#000000">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,18 +18,56 @@
             android:text="start"/>
         <com.liys.view.WaterWaveProView
             android:id="@+id/water_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
+            app:text_size="20sp"
             app:light_show="true"
-            app:text_size="20sp"/>
+            app:stroke_show="false"
+            app:progress_color_background="#69B655"
+            app:progress_color="#0AA328"/>
 
-        <SeekBar
-            android:id="@+id/seekBar"
-            android:layout_width="200dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center"/>
+            android:layout_marginTop="10dp">
+            <TextView
+                style="@style/text"
+                android:text="水波宽度"/>
+            <SeekBar
+                android:id="@+id/seekBar"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+            <TextView
+                style="@style/text"
+                android:text="水波高度"/>
+            <SeekBar
+                android:id="@+id/seekBar2"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+            <TextView
+                style="@style/text"
+                android:text="水波速度"/>
+            <SeekBar
+                android:id="@+id/seekBar3"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+
     </LinearLayout>
 </ScrollView>

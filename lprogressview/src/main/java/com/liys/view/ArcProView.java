@@ -45,11 +45,10 @@ public class ArcProView extends SquareProView {
 
     @Override
     public void init() {
-        blankSpace = dp2px(4);
         if(progressSize==height){
             progressSize = dp2px(10);
         }
-        blankSpace = dp2px(2);
+        blankSpace = dp2px(4);
         refreshLight();
 
         progressPaint.setStrokeWidth(progressSize); //大小

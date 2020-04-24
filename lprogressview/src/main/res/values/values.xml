@@ -192,6 +192,25 @@
 
     <!-- 水波 进度条 -->
     <declare-styleable name="WaterWaveProView">
+        <attr name="progress_max"/>
+        <attr name="progress_value"/>
+
+        <attr name="progress_size"/>
+        <attr name="progress_color"/>
+        <attr name="progress_color_background"/>
+
+        <attr name="text_size"/>
+        <attr name="text_color"/>
+        <attr name="text_show"/>
+        <attr name="text_decimal_num"/>
+
+        <attr name="light_color"/>
+        <attr name="light_show"/>
+
+        <attr name="stroke_color"/>
+        <attr name="stroke_width"/>
+        <attr name="stroke_show"/>
+
         <attr name="water_wave_width" format="dimension"/> // 水波长
         <attr name="water_wave_height" format="dimension"/> //水波高度
         <attr name="water_wave_speed" format="integer"/> //水波--速度

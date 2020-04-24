@@ -19,10 +19,12 @@ import com.liys.view.WaterWaveProView;
  * @UpdateRemark: 更新说明
  * @Version: 1.0
  */
-public class WaterWaveActivity extends AppCompatActivity implements View.OnClickListener {
+public class WaterWaveActivity extends AppCompatActivity implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
 
     WaterWaveProView waterProView;
     SeekBar seekBar;
+    SeekBar seekBar2;
+    SeekBar seekBar3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,28 +33,18 @@ public class WaterWaveActivity extends AppCompatActivity implements View.OnClick
 
         waterProView = findViewById(R.id.water_view);
         seekBar = findViewById(R.id.seekBar);
+        seekBar2 = findViewById(R.id.seekBar2);
+        seekBar3 = findViewById(R.id.seekBar3);
         findViewById(R.id.start_btn).setOnClickListener(this);
 
-        seekBar.setMax(360);
-        seekBar.setProgress(seekBar.getMax());
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-//                waterProView.setDrawAngle(progress);
-            }
+        seekBar.setMax(waterProView.dp2px(100));
+        seekBar.setOnSeekBarChangeListener(this);
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
+        seekBar2.setMax(waterProView.dp2px(30));
+        seekBar2.setOnSeekBarChangeListener(this);
 
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
-        waterProView.setOutGradient(Color.RED, Color.YELLOW, Color.GRAY, Color.RED);
+        seekBar3.setMax(10);
+        seekBar3.setOnSeekBarChangeListener(this);
     }
 
     @Override
@@ -71,5 +63,33 @@ public class WaterWaveActivity extends AppCompatActivity implements View.OnClick
                 animator.start();
                 break;
         }
+    }
+
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        if(progress==0){
+            return;
+        }
+        switch (seekBar.getId()){
+            case R.id.seekBar:
+                waterProView.setWaveWidth(progress);
+                break;
+            case R.id.seekBar2:
+                waterProView.setWaveHeight(progress);
+                break;
+            case R.id.seekBar3:
+                waterProView.setWaveSpeed(progress);
+                break;
+        }
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+
     }
 }
