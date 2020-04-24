@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.util.Log;
 
 /**
  * @Description:
@@ -66,12 +67,22 @@ public class LineBottomProView extends LineBaseProView {
     @SuppressLint("DrawAllocation")
     @Override
     protected void onDraw(Canvas canvas) {
+        pathIn.reset();
+        pathOut.reset();
+
         //1. 获取当前进度
         int outWidth = (int)(progress/maxProgress*(width-boxWidth)); //计算当前进度距离
         int top = height-progressSize;
         //进度条当前长度
-        canvas.drawRoundRect(new RectF(boxWidth/2, top, width-boxWidth/2, top+progressSize), radius, radius, progressBgPaint);
-        canvas.drawRoundRect(new RectF(boxWidth/2, top, outWidth+boxWidth/2, top+progressSize), radius, radius, progressPaint);
+//        canvas.drawRoundRect(new RectF(boxWidth/2, top, width-boxWidth/2, top+progressSize), radius, radius, progressBgPaint);
+//        canvas.drawRoundRect(new RectF(boxWidth/2, top, outWidth+boxWidth/2, top+progressSize), progressRadius, progressRadius, progressPaint);
+
+        refreshRadius();
+        pathIn.addRoundRect(new RectF(boxWidth/2, top, width-boxWidth/2, top+progressSize), floatsIn, Path.Direction.CW);
+        pathOut.addRoundRect(new RectF(boxWidth/2, top, outWidth+boxWidth/2, top+progressSize), floatsOut, Path.Direction.CW);
+        pathOut.op(pathIn, Path.Op.INTERSECT); //交集
+        canvas.drawPath(pathIn, progressBgPaint);
+        canvas.drawPath(pathOut, progressPaint);
 
         drawBox(canvas, outWidth);
         drawText(canvas, outWidth);
@@ -90,7 +101,7 @@ public class LineBottomProView extends LineBaseProView {
         Path path = new Path();
         path.moveTo(left + boxWidth/2-sp2px(4), boxHeight);// 此点为多边形的起点
         path.lineTo(left + boxWidth/2+sp2px(4), boxHeight);
-        path.lineTo(left + boxWidth/2, height-progressSize);
+        path.lineTo(left + boxWidth/2, height-progressSize-2);
         path.close(); // 使这些点构成封闭的多边形
         canvas.drawPath(path, boxPaint);
     }

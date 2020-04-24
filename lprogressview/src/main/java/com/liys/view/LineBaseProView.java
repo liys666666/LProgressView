@@ -3,6 +3,7 @@ package com.liys.view;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.LinearGradient;
+import android.graphics.Path;
 import android.graphics.Shader;
 import android.support.annotation.ArrayRes;
 import android.support.annotation.ColorInt;
@@ -27,6 +28,13 @@ public abstract class LineBaseProView extends BaseProView {
     protected float progressRadius;
 
     protected boolean isRadius = true; //true使用radius   false使用leftTopRadius...
+
+    //圆角
+    protected float[] floatsIn;
+    protected float[] floatsOut;
+
+    protected Path pathIn = new Path();
+    protected Path pathOut = new Path();
 
     public LineBaseProView(Context context) {
         this(context, null);
@@ -54,7 +62,7 @@ public abstract class LineBaseProView extends BaseProView {
         progressRadius = typedArray.getDimension(R.styleable.LineBaseProView_progress_radius, 0);
 
         if(radius==-1){ //没有赋值，则自己处理
-            isRadius = false;
+            isRadius = true;
         }
         if(leftTopRadius==0 || leftBottomRadius==0 || rightTopRadius==0 || rightBottomRadius==0){
             isRadius = true;
@@ -68,6 +76,15 @@ public abstract class LineBaseProView extends BaseProView {
         }
     }
 
+    protected void refreshRadius(){
+        if(isRadius){
+            floatsIn = new float[]{radius, radius, radius, radius, radius, radius, radius, radius};
+            floatsOut = new float[]{radius, radius, progressRadius, progressRadius, progressRadius, progressRadius, radius, radius};
+        }else{
+            floatsIn = new float[]{leftTopRadius, leftTopRadius, rightTopRadius, rightTopRadius, rightBottomRadius, rightBottomRadius, leftBottomRadius, leftBottomRadius};
+            floatsOut = new float[]{leftTopRadius, leftTopRadius, progressRadius, progressRadius, progressRadius, progressRadius, leftBottomRadius, leftBottomRadius};
+        }
+    }
 
     /**
      * 设置渐变

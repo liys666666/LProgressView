@@ -40,5 +40,107 @@
             android:layout_height="wrap_content"
             android:textAllCaps="false"
             android:text="water_wave_btn"/>
+
+        <Button
+            android:id="@+id/start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="开始"/>
+        <!--  -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+            <TextView
+                style="@style/text"
+                android:text="LineProView: "/>
+            <com.liys.view.LineProView
+                android:id="@+id/line_view"
+                style="@style/base"
+                app:progress_size="30dp"
+                app:progress_color_background="@color/colorPrimaryDark"
+                app:progress_color="#FCD728"
+                app:radius="20dp"
+                app:progress_radius="20dp"
+                app:stroke_width="1dp"
+                app:stroke_show="true"
+                app:text_size="15sp"
+                app:text_show="true"
+                app:light_show="true"
+                app:progress_value="90"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+            <TextView
+                style="@style/text"
+                android:text="LineCentreProView: "/>
+            <com.liys.view.LineCentreProView
+                android:id="@+id/center_view"
+                style="@style/base"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                app:progress_size="10dp"
+                app:light_show="true"
+                app:text_color="@color/colorAccent"/>
+        </LinearLayout>
+
+        <!--LineBottomProView-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+            <TextView
+                style="@style/text"
+                android:text="LineBottomProView: "/>
+            <com.liys.view.LineBottomProView
+                android:id="@+id/bottom_view"
+                style="@style/base"
+                android:layout_gravity="center"
+                app:light_show="true"
+                app:text_color="@color/colorAccent"
+                app:progress_radius="0dp"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                style="@style/text"
+                android:text="ArcProView: " />
+            <com.liys.view.ArcProView
+                android:id="@+id/arc_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:light_show="true"
+                app:text_size="20sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+            <TextView
+                style="@style/text"
+                android:text="WaterWaveProView: "/>
+            <com.liys.view.WaterWaveProView
+                android:id="@+id/water_view"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                app:text_size="20sp"
+                app:light_show="true"
+                app:stroke_show="false"
+                app:progress_color_background="#69B655"
+                app:progress_color="#0AA328"/>
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

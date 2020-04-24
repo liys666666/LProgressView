@@ -108,7 +108,7 @@ public abstract class BaseProView extends View{
         progressColor = typedArray.getColor(R.styleable.BaseProgressView_progress_color, Color.YELLOW);
 
         textSize = typedArray.getDimensionPixelSize(R.styleable.BaseProgressView_text_size, sp2px(10));
-        textColor = typedArray.getColor(R.styleable.BaseProgressView_text_color, Color.parseColor("#ABC4DF"));
+        textColor = typedArray.getColor(R.styleable.BaseProgressView_text_color, Color.WHITE);
         textShow = typedArray.getBoolean(R.styleable.BaseProgressView_text_show, false);
         textDecimalNum = typedArray.getInt(R.styleable.BaseProgressView_text_decimal_num, 0);
 

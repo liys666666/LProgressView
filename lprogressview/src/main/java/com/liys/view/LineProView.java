@@ -18,10 +18,9 @@ import android.util.AttributeSet;
  */
 public class LineProView extends LineBaseProView {
     //画笔
-    protected Path pathIn = new Path();
-    protected Path pathOut = new Path();
     protected Path pathLight = new Path();
     protected Path pathStroke = new Path();
+
 
     //文字偏移量(进度条--左边距离)
     protected int offTextX;
@@ -47,7 +46,6 @@ public class LineProView extends LineBaseProView {
         }
     }
 
-
     @SuppressLint("DrawAllocation")
     @Override
     protected void onDraw(Canvas canvas) {
@@ -63,21 +61,14 @@ public class LineProView extends LineBaseProView {
 
         //绘制区域
         int top = (height- progressSize)/2;
+
         RectF rectFIn = new RectF(blankSpace, top, width-blankSpace, top+ progressSize);
         RectF rectFOut = new RectF(blankSpace, top, (int)progressLength, top+ progressSize);
         RectF rectFStroke = new RectF(blankSpace+strokeWidth/2, top+strokeWidth/2, width-blankSpace-strokeWidth/2, top+progressSize-strokeWidth/2);
-        //圆角
-        float[] floatsIn;
-        float[] floatsOut;
-        if(isRadius){
-            floatsIn = new float[]{radius, radius, radius, radius, radius, radius, radius, radius};
-            floatsOut = new float[]{radius, radius, progressRadius, progressRadius, progressRadius, progressRadius, radius, radius};
-        }else{
-            floatsIn = new float[]{leftTopRadius, leftTopRadius, rightTopRadius, rightTopRadius, rightBottomRadius, rightBottomRadius, leftBottomRadius, leftBottomRadius};
-            floatsOut = new float[]{leftTopRadius, leftTopRadius, progressRadius, progressRadius, progressRadius, progressRadius, leftBottomRadius, leftBottomRadius};
-        }
+        refreshRadius();
         pathIn.addRoundRect(rectFIn, floatsIn, Path.Direction.CW);
         pathOut.addRoundRect(rectFOut, floatsOut, Path.Direction.CW);
+
         pathLight.addRoundRect(rectFIn, floatsIn, Path.Direction.CW);
         pathStroke.addRoundRect(rectFStroke, floatsIn, Path.Direction.CW);
         pathOut.op(pathIn, Path.Op.INTERSECT); //交集
