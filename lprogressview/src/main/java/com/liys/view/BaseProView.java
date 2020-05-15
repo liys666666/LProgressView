@@ -224,7 +224,7 @@ public abstract class BaseProView extends View{
      */
     protected void refreshText(){
         text = keepDecimals(progress/maxProgress*100)+"%";
-        invalidate();
+        postInvalidate();
     }
 
     /**
