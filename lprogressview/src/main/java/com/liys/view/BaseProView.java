@@ -239,7 +239,7 @@ public abstract class BaseProView extends View{
         String format = "";
         for (int i = 0; i < textDecimalNum; i++) {
             if(i==0){
-                format = ".0";
+                format = "0.0";
             }else{
                 format = format+"0";
             }
