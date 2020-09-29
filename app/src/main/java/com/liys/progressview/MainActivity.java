@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
+import com.liys.progressview.main2.MainActivity2;
 import com.liys.view.BaseProView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        findViewById(R.id.main2).setOnClickListener(this);
         findViewById(R.id.line_btn).setOnClickListener(this);
         findViewById(R.id.line_centre_btn).setOnClickListener(this);
         findViewById(R.id.line_bottom_btn).setOnClickListener(this);
@@ -40,6 +42,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.main2:
+                startActivity(new Intent(this, MainActivity2.class));
+                break;
             case R.id.line_btn:
                 startActivity(new Intent(this, LineActivity.class));
                 break;

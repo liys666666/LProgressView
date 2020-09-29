@@ -11,6 +11,12 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <Button
+            android:id="@+id/main2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="列表中"/>
+        <Button
             android:id="@+id/line_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

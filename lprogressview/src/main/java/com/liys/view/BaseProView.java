@@ -76,20 +76,34 @@ public abstract class BaseProView extends View{
         this.context = context;
         initBaseAttrs(attrs);
         initBaseView();
-        post(new Runnable() {
-            @Override
-            public void run() {
-                width = getMeasuredWidth();
-                height = getMeasuredHeight();
-                if(progressSize == 0){
-                    progressSize = height;
-                }
-                blankSpace = (height- progressSize)/2;
-                refreshLight();
-                beforeInit();
-                init();
-            }
-        });
+//        post(new Runnable() {
+//            @Override
+//            public void run() {
+//                width = getMeasuredWidth();
+//                height = getMeasuredHeight();
+//                if(progressSize == 0){
+//                    progressSize = height;
+//                }
+//                blankSpace = (height- progressSize)/2;
+//                refreshLight();
+//                beforeInit();
+//                init();
+//            }
+//        });
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        width = w;
+        height = h;
+        if(progressSize == 0){
+            progressSize = height;
+        }
+        blankSpace = (height- progressSize)/2;
+        refreshLight();
+        beforeInit();
+        init();
     }
 
     public void beforeInit(){}
