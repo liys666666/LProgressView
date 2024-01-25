@@ -5,9 +5,10 @@ import android.content.res.TypedArray;
 import android.graphics.LinearGradient;
 import android.graphics.Path;
 import android.graphics.Shader;
-import android.support.annotation.ArrayRes;
-import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
+
+import androidx.annotation.ArrayRes;
+import androidx.annotation.ColorInt;
 
 /**
  * @Description: 线性进度条---基类

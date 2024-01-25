@@ -7,12 +7,13 @@ import android.graphics.BlurMaskFilter;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 
 import java.text.DecimalFormat;
+
+import androidx.annotation.ColorInt;
 
 /**
  * @Description:

@@ -1,12 +1,12 @@
 package com.liys.progressview;
 
 import android.animation.ValueAnimator;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.SeekBar;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.liys.view.WaterWaveProView;
 

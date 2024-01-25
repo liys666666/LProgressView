@@ -2,8 +2,9 @@ package com.liys.progressview;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.SeekBar;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.liys.view.LineBaseProView;
 import com.liys.view.LineProView;

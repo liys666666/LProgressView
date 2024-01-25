@@ -7,8 +7,9 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.SweepGradient;
-import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
+
+import androidx.annotation.ColorInt;
 
 /**
  * @Description: 圆弧进度条

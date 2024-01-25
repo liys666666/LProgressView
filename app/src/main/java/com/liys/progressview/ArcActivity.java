@@ -1,9 +1,9 @@
 package com.liys.progressview;
 
 import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.SeekBar;
@@ -19,7 +19,7 @@ import com.liys.view.ArcProView;
  * @UpdateRemark: 更新说明
  * @Version: 1.0
  */
-public class ArcActivity extends AppCompatActivity implements View.OnClickListener {
+public class ArcActivity extends Activity implements View.OnClickListener {
 
     ArcProView arcProView;
     SeekBar seekBar;
